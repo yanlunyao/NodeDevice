@@ -18,8 +18,9 @@
 .\output\appsensor.o: ..\Libraries\inc\misc.h
 .\output\appsensor.o: ..\Os\hfiles\osadc.h
 .\output\appsensor.o: ..\Os\hfiles\ostmr.h
-.\output\appsensor.o: ..\Os\hfiles\osprintf.h
-.\output\appsensor.o: ..\Os\hfiles\hw_usart.h
 .\output\appsensor.o: ..\App\hfiles\appsensor.h
 .\output\appsensor.o: ..\App\hfiles\appusart.h
 .\output\appsensor.o: ..\Os\hfiles\osusart.h
+.\output\appsensor.o: ..\Os\hfiles\osusart1.h
+.\output\appsensor.o: ..\Os\hfiles\hw_usart.h
+.\output\appsensor.o: ..\Os\hfiles\osusart2.h

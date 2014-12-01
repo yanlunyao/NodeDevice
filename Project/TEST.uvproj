@@ -616,14 +616,19 @@
               <FilePath>..\Os\cfiles\osqtmr.c</FilePath>
             </File>
             <File>
+              <FileName>osusart1.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Os\cfiles\osusart1.c</FilePath>
+            </File>
+            <File>
+              <FileName>osusart2.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Os\cfiles\osusart2.c</FilePath>
+            </File>
+            <File>
               <FileName>osusart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Os\cfiles\osusart.c</FilePath>
-            </File>
-            <File>
-              <FileName>osprintf.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Os\cfiles\osprintf.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -644,6 +649,11 @@
               <FileName>appkey.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\App\cfiles\appkey.c</FilePath>
+            </File>
+            <File>
+              <FileName>appusarttest.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\App\cfiles\appusarttest.c</FilePath>
             </File>
           </Files>
         </Group>

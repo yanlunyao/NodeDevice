@@ -19,7 +19,8 @@
 .\output\appusart.o: ..\Libraries\inc\misc.h
 .\output\appusart.o: ..\App\hfiles\appusart.h
 .\output\appusart.o: ..\Os\hfiles\osusart.h
+.\output\appusart.o: ..\Os\hfiles\osusart1.h
 .\output\appusart.o: ..\Os\hfiles\hw_usart.h
-.\output\appusart.o: ..\Os\hfiles\osprintf.h
+.\output\appusart.o: ..\Os\hfiles\osusart2.h
 .\output\appusart.o: ..\App\hfiles\appCommProtocolDef.h
 .\output\appusart.o: ..\App\hfiles\appsensor.h

@@ -37,11 +37,13 @@
 ".\output\osrf315tx.o"
 ".\output\ostmr1.o"
 ".\output\osqtmr.o"
+".\output\osusart1.o"
+".\output\osusart2.o"
 ".\output\osusart.o"
-".\output\osprintf.o"
 ".\output\appsensor.o"
 ".\output\appusart.o"
 ".\output\appkey.o"
+".\output\appusarttest.o"
 --library_type=microlib --strict --scatter ".\OUTPUT\NodeDevice.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

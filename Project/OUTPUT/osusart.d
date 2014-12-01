@@ -1,7 +1,6 @@
 .\output\osusart.o: ..\Os\cfiles\osusart.c
-.\output\osusart.o: C:\Keil\ARM\ARMCC\bin\..\include\stdio.h
-.\output\osusart.o: C:\Keil\ARM\ARMCC\bin\..\include\string.h
 .\output\osusart.o: ..\Os\hfiles\osusart.h
+.\output\osusart.o: ..\Os\hfiles\osusart1.h
 .\output\osusart.o: ..\Os\hfiles\hw_usart.h
 .\output\osusart.o: ..\BSP\hw_config.h
 .\output\osusart.o: ..\CMSIS\CM3\DeviceSupport\ST\STM32F10x\stm32f10x.h
@@ -18,5 +17,4 @@
 .\output\osusart.o: ..\Libraries\inc\stm32f10x_tim.h
 .\output\osusart.o: ..\Libraries\inc\stm32f10x_usart.h
 .\output\osusart.o: ..\Libraries\inc\misc.h
-.\output\osusart.o: ..\Os\hfiles\osqtmr.h
-.\output\osusart.o: ..\Os\hfiles\ostmr.h
+.\output\osusart.o: ..\Os\hfiles\osusart2.h

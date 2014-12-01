@@ -631,11 +631,6 @@
           <GroupName>App</GroupName>
           <Files>
             <File>
-              <FileName>apprf315tx.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\App\cfiles\apprf315tx.c</FilePath>
-            </File>
-            <File>
               <FileName>appsensor.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\App\cfiles\appsensor.c</FilePath>

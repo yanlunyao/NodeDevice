@@ -26,5 +26,7 @@
 .\output\main.o: ..\Os\hfiles\osrf315tx.h
 .\output\main.o: ..\App\hfiles\appusart.h
 .\output\main.o: ..\Os\hfiles\osusart.h
+.\output\main.o: ..\Os\hfiles\osusart1.h
 .\output\main.o: ..\Os\hfiles\hw_usart.h
-.\output\main.o: ..\Os\hfiles\osprintf.h
+.\output\main.o: ..\Os\hfiles\osusart2.h
+.\output\main.o: ..\App\hfiles\appusarttest.h
