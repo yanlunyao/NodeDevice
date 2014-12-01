@@ -16,12 +16,13 @@
 //#include "osdelay.h"
 #include "osrf315tx.h"
 #include "osled.h"
+#include "ostmr.h"
 
 /*define********************************************************************************************/
 #define		RF_SEND_TIMES_NUM					5
 
 #define		RF_SEND_HIGH							GPIO_WriteBit(GPIO_RF315_TX_PORT, GPIO_RF315_TX, Bit_SET);
-#define		RF_SEND_LOW								GPIO_WriteBit(GPIO_RF315_TX_PORT, GPIO_RF315_TX, Bit_RESET);
+#define		RF_SEND_LOW							GPIO_WriteBit(GPIO_RF315_TX_PORT, GPIO_RF315_TX, Bit_RESET);
 
 //#define		PREAMBLE_HIGH_TIME				170    //unit: us
 //#define		PREAMBLE_LOW_TIME				  5300
@@ -38,8 +39,8 @@ typedef enum
 }_rfSendStatus_st;   
 
 /*valiable********************************************************************************************/
-static u8 rfTimerCnt = 0;
-static u8 rfDataBit[25] = {0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff}; //加多一位防止数组溢出
+volatile u8 rfTimerCnt = 0;
+volatile u8 rfDataBit[25] = {0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff}; //加多一位防止数组溢出
 volatile u8 rfDataBitNum = 0;
 volatile _rfSendStatus_st rfSendStatus; //中断里会被改变
 
@@ -214,10 +215,11 @@ void _TIM4_IRQHandler(void)
 					RF_SEND_LOW;
 				}
 			}	
-			if(rfTimerCnt == 16)
+			if(rfTimerCnt > 16)
 			{
 				rfTimerCnt = 0;
 				rfDataBitNum++;
+				RF_SEND_HIGH;    //debug
 			}
 			if(rfDataBitNum == 24) //发送到data最后一位了，表示rf发送完毕，此时关闭中断，复位
 			{
@@ -239,9 +241,10 @@ static void Rf315StopSendIt()
   GPIO_InitStructure.GPIO_Pin = GPIO_RF315_TX;
   GPIO_Init(GPIO_RF315_TX_PORT, &GPIO_InitStructure);//浮点输入
 	
-	rfDataBitNum = 0;
-	rfSendStatus = RF_IDLE;
 	TIM_ITConfig(TIMER_CHANNEL_3ND, TIM_IT_Update, DISABLE); 
+	rfDataBitNum = 0;
+	rfTimerCnt = 0;
+	rfSendStatus = RF_IDLE;
 }
 /*
 *********************************************************************************************************
@@ -321,7 +324,7 @@ static bool_t Rf315Transmit(u8 *addr)
 void Rf315SendMsg(u8 *data)
 {
 	u8 i;
-	for(i=0;i<RF_SEND_TIMES_NUM;i++)
+	for(i=0;i< RF_SEND_TIMES_NUM;i++)
 	{
 		while(Rf315Transmit(data)!= TRUE);
 	}

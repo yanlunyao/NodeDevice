@@ -253,6 +253,16 @@
           <WinNumber>1</WinNumber>
           <ItemText>_appRsTxBuf</ItemText>
         </Ww>
+        <Ww>
+          <count>19</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>learningCode</ItemText>
+        </Ww>
+        <Ww>
+          <count>20</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>rfDataBit</ItemText>
+        </Ww>
       </WatchWindow1>
       <MemoryWindow1>
         <Mm>
@@ -331,10 +341,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>2</ColumnNumber>
+      <ColumnNumber>10</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>28</TopLine>
-      <CurrentLine>47</CurrentLine>
+      <TopLine>12</TopLine>
+      <CurrentLine>25</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\User\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -605,7 +615,7 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>385</TopLine>
+      <TopLine>383</TopLine>
       <CurrentLine>394</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\Libraries\src\stm32f10x_gpio.c</PathWithFileName>
@@ -789,8 +799,8 @@
       <Focus>0</Focus>
       <ColumnNumber>10</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>275</TopLine>
-      <CurrentLine>302</CurrentLine>
+      <TopLine>79</TopLine>
+      <CurrentLine>85</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\Os\cfiles\ostmr.c</PathWithFileName>
       <FilenameWithoutPath>ostmr.c</FilenameWithoutPath>
@@ -835,10 +845,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>2</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>79</TopLine>
-      <CurrentLine>88</CurrentLine>
+      <TopLine>84</TopLine>
+      <CurrentLine>109</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\Os\cfiles\osadc.c</PathWithFileName>
       <FilenameWithoutPath>osadc.c</FilenameWithoutPath>
@@ -899,10 +909,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>2</ColumnNumber>
+      <ColumnNumber>41</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>295</TopLine>
-      <CurrentLine>310</CurrentLine>
+      <TopLine>11</TopLine>
+      <CurrentLine>29</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\Os\cfiles\osrf315tx.c</PathWithFileName>
       <FilenameWithoutPath>osrf315tx.c</FilenameWithoutPath>
@@ -947,10 +957,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>22</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>76</TopLine>
-      <CurrentLine>93</CurrentLine>
+      <TopLine>78</TopLine>
+      <CurrentLine>97</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\Os\cfiles\osusart.c</PathWithFileName>
       <FilenameWithoutPath>osusart.c</FilenameWithoutPath>
@@ -989,8 +999,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>84</TopLine>
-      <CurrentLine>85</CurrentLine>
+      <TopLine>289</TopLine>
+      <CurrentLine>300</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\App\cfiles\appsensor.c</PathWithFileName>
       <FilenameWithoutPath>appsensor.c</FilenameWithoutPath>
@@ -1003,10 +1013,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>23</ColumnNumber>
+      <ColumnNumber>30</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>124</TopLine>
-      <CurrentLine>137</CurrentLine>
+      <TopLine>29</TopLine>
+      <CurrentLine>49</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\App\cfiles\appusart.c</PathWithFileName>
       <FilenameWithoutPath>appusart.c</FilenameWithoutPath>
@@ -1019,10 +1029,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>3</ColumnNumber>
+      <ColumnNumber>13</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>40</TopLine>
-      <CurrentLine>73</CurrentLine>
+      <TopLine>49</TopLine>
+      <CurrentLine>67</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\App\cfiles\appkey.c</PathWithFileName>
       <FilenameWithoutPath>appkey.c</FilenameWithoutPath>

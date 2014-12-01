@@ -295,7 +295,7 @@ static void UploadSensorMsg(u8 channel)
 	tempData[3] = channel;
 	tempData[4] = uploadSensorStsEvent[channel].SensorMsg;
 	tempLen = 5;
-	AppRs485CommSendCmd(tempLen, tempData);
+	//AppRs485CommSendCmd(tempLen, tempData);
 }	
 void AppSensorProcess(void)
 {

@@ -247,7 +247,7 @@ static void ControllSmartSocket(void)  //¿ØÖÆÖÇÄÜ²å×ù
 	_appRsTxBuf.dataLen = 3;
 	
 	temp[0] = 0; //smart socket number1
-	temp[1] = SMARTSOCKET_TOTAL_OPEN_ADDR;
+	temp[1] = SMARTSOCKET_INVERT_ADDR;
 	temp[2] = nodeAddrValue;
 	Rf315SendMsg(temp);
 }	

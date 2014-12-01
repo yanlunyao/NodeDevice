@@ -92,7 +92,6 @@ Section Cross References
     osprintf.o(.text) refers to memcpya.o(.text) for __aeabi_memcpy
     appsensor.o(.text) refers to osadc.o(.text) for OsAdcInit
     appsensor.o(.text) refers to ostmr.o(.text) for t_ostmr_insertTask
-    appsensor.o(.text) refers to appusart.o(.text) for AppRs485CommSendCmd
     appsensor.o(.text) refers to appsensor.o(.bss) for uploadSensorStsEvent
     appsensor.o(.text) refers to appsensor.o(.data) for g_sensor_timing_flg
     appusart.o(.text) refers to osprintf.o(.text) for OsPrintf_Init
@@ -419,39 +418,39 @@ Image Symbol Table
     Symbol Name                              Value     Ov Type        Size  Object(Section)
 
     ../clib/../cmprslib/zerorunl2.c          0x00000000   Number         0  __dczerorl2.o ABSOLUTE
-    ../clib/microlib/division.c              0x00000000   Number         0  uldiv.o ABSOLUTE
     ../clib/microlib/division.c              0x00000000   Number         0  uidiv.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
+    ../clib/microlib/division.c              0x00000000   Number         0  uldiv.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
-    ../clib/microlib/longlong.c              0x00000000   Number         0  llshl.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llsshr.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llushr.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf2.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf8.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfb.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf0.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf1.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf3.o ABSOLUTE
+    ../clib/microlib/longlong.c              0x00000000   Number         0  llshl.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf7.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf6.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf5.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf8.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf3.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf4.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfa.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf5.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf2.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf1.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf0.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfb.o ABSOLUTE
     ../clib/microlib/printf/stubs.s          0x00000000   Number         0  stubs.o ABSOLUTE
     ../clib/microlib/stdio/streams.c         0x00000000   Number         0  stdout.o ABSOLUTE
-    ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpyb.o ABSOLUTE
     ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpya.o ABSOLUTE
+    ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpyb.o ABSOLUTE
     ../clib/microlib/string/memset.c         0x00000000   Number         0  memseta.o ABSOLUTE
     ../clib/microlib/stubs.s                 0x00000000   Number         0  iusefp.o ABSOLUTE
     ../fplib/microlib/fpadd.c                0x00000000   Number         0  dadd.o ABSOLUTE
@@ -555,64 +554,64 @@ Image Symbol Table
     .text                                    0x08003928   Section        0  osrf315tx.o(.text)
     TIM_NVIC_Configuration_3nd               0x08003929   Thumb Code    34  osrf315tx.o(.text)
     TimerInit_3nd                            0x0800394b   Thumb Code    58  osrf315tx.o(.text)
-    Rf315StopSendIt                          0x080039ad   Thumb Code    44  osrf315tx.o(.text)
-    Rf315StartSendIt                         0x08003a95   Thumb Code    62  osrf315tx.o(.text)
-    Rf315Transmit                            0x08003ad3   Thumb Code   110  osrf315tx.o(.text)
-    .text                                    0x08003b80   Section        0  ostmr1.o(.text)
-    TIM_NVIC_Configuration_2nd               0x08003be5   Thumb Code    32  ostmr1.o(.text)
-    TimerInit_2nd                            0x08003c05   Thumb Code    72  ostmr1.o(.text)
-    .text                                    0x08003c74   Section        0  osqtmr.o(.text)
-    systmr_dummp                             0x08003c75   Thumb Code     2  osqtmr.o(.text)
-    t_systmr_status                          0x08003c77   Thumb Code    54  osqtmr.o(.text)
-    systmr_quickQTaskHandler                 0x08003cad   Thumb Code   176  osqtmr.o(.text)
-    systmr_fastQTaskHandler                  0x08003d5d   Thumb Code   176  osqtmr.o(.text)
-    .text                                    0x08004294   Section        0  osusart.o(.text)
-    STM_EVAL_COMInit                         0x08004295   Thumb Code   154  osusart.o(.text)
-    UsartConfig                              0x0800432f   Thumb Code    66  osusart.o(.text)
-    Usart_NVIC_Configuration                 0x08004371   Thumb Code    34  osusart.o(.text)
-    _hwuart0_ScanRxProcess                   0x08004393   Thumb Code    50  osusart.o(.text)
-    _hwuart0_1msTask                         0x080043c5   Thumb Code    98  osusart.o(.text)
-    UsartRstVariable                         0x08004427   Thumb Code    86  osusart.o(.text)
-    UsartTaskInit                            0x0800447d   Thumb Code    32  osusart.o(.text)
-    _hwuart0_txIntrSer                       0x080044ad   Thumb Code    94  osusart.o(.text)
-    _hwuart0_rxIntrSer                       0x0800450b   Thumb Code    80  osusart.o(.text)
-    .text                                    0x080046ac   Section        0  osprintf.o(.text)
-    STM_EVAL_COMInit                         0x080046ad   Thumb Code   154  osprintf.o(.text)
-    Usart1Config                             0x08004747   Thumb Code    66  osprintf.o(.text)
-    Printf_NVIC_Configuration                0x08004789   Thumb Code    30  osprintf.o(.text)
-    _hwuart1_ScanRxProcess                   0x080047a7   Thumb Code    50  osprintf.o(.text)
-    _hwuart1_1msTask                         0x080047d9   Thumb Code    98  osprintf.o(.text)
-    Usart1RstVariable                        0x0800483b   Thumb Code    86  osprintf.o(.text)
-    Usart1TaskInit                           0x08004891   Thumb Code    32  osprintf.o(.text)
-    _hwuart1_txIntrSer                       0x080049d7   Thumb Code    94  osprintf.o(.text)
-    _hwuart1_rxIntrSer                       0x08004a35   Thumb Code    80  osprintf.o(.text)
-    .text                                    0x08004c24   Section        0  appsensor.o(.text)
-    ResetUploadEventValue                    0x08004c25   Thumb Code     8  appsensor.o(.text)
-    App100msSensorTask                       0x08004c2d   Thumb Code   112  appsensor.o(.text)
-    sensor_alarm_check                       0x08004cb5   Thumb Code   150  appsensor.o(.text)
-    sensor_scan                              0x08004d4b   Thumb Code    46  appsensor.o(.text)
-    UploadSensorMsg                          0x08004d79   Thumb Code    54  appsensor.o(.text)
-    AppSensorUploadHandle                    0x08004daf   Thumb Code    56  appsensor.o(.text)
-    .text                                    0x08004e8c   Section        0  appusart.o(.text)
-    u1_hwuart_Txing                          0x08004ec5   Thumb Code    28  appusart.o(.text)
-    AppZigbeeCheckRxMessage                  0x08004f25   Thumb Code     4  appusart.o(.text)
-    AppZigbeeRxMessage                       0x08004f63   Thumb Code    58  appusart.o(.text)
-    ControllSmartSocket                      0x0800509f   Thumb Code    54  appusart.o(.text)
-    GetSensorCurrentStatus                   0x080050d5   Thumb Code    26  appusart.o(.text)
-    SensorStatusChangedUpload                0x080050ef   Thumb Code    12  appusart.o(.text)
-    .text                                    0x08005118   Section        0  appkey.o(.text)
-    .text                                    0x080051d8   Section        0  memcpya.o(.text)
-    .text                                    0x080051fc   Section        0  memseta.o(.text)
-    .text                                    0x08005220   Section       36  init.o(.text)
-    .text                                    0x08005244   Section        0  __dczerorl2.o(.text)
-    i.__0printf$2                            0x080052a0   Section        0  printf2.o(i.__0printf$2)
-    i.__scatterload_copy                     0x080052c0   Section       14  handlers.o(i.__scatterload_copy)
-    i.__scatterload_null                     0x080052ce   Section        2  handlers.o(i.__scatterload_null)
-    i.__scatterload_zeroinit                 0x080052d0   Section       14  handlers.o(i.__scatterload_zeroinit)
-    i._printf_core                           0x080052de   Section        0  printf2.o(i._printf_core)
-    _printf_core                             0x080052df   Thumb Code   208  printf2.o(i._printf_core)
-    .constdata                               0x080053b0   Section       32  osusart.o(.constdata)
-    .constdata                               0x080053d0   Section       12  appusart.o(.constdata)
+    Rf315StopSendIt                          0x080039ad   Thumb Code    48  osrf315tx.o(.text)
+    Rf315StartSendIt                         0x08003aa3   Thumb Code    62  osrf315tx.o(.text)
+    Rf315Transmit                            0x08003ae1   Thumb Code   110  osrf315tx.o(.text)
+    .text                                    0x08003b90   Section        0  ostmr1.o(.text)
+    TIM_NVIC_Configuration_2nd               0x08003bf5   Thumb Code    32  ostmr1.o(.text)
+    TimerInit_2nd                            0x08003c15   Thumb Code    72  ostmr1.o(.text)
+    .text                                    0x08003c84   Section        0  osqtmr.o(.text)
+    systmr_dummp                             0x08003c85   Thumb Code     2  osqtmr.o(.text)
+    t_systmr_status                          0x08003c87   Thumb Code    54  osqtmr.o(.text)
+    systmr_quickQTaskHandler                 0x08003cbd   Thumb Code   176  osqtmr.o(.text)
+    systmr_fastQTaskHandler                  0x08003d6d   Thumb Code   176  osqtmr.o(.text)
+    .text                                    0x080042a4   Section        0  osusart.o(.text)
+    STM_EVAL_COMInit                         0x080042a5   Thumb Code   154  osusart.o(.text)
+    UsartConfig                              0x0800433f   Thumb Code    66  osusart.o(.text)
+    Usart_NVIC_Configuration                 0x08004381   Thumb Code    34  osusart.o(.text)
+    _hwuart0_ScanRxProcess                   0x080043a3   Thumb Code    50  osusart.o(.text)
+    _hwuart0_1msTask                         0x080043d5   Thumb Code    98  osusart.o(.text)
+    UsartRstVariable                         0x08004437   Thumb Code    86  osusart.o(.text)
+    UsartTaskInit                            0x0800448d   Thumb Code    32  osusart.o(.text)
+    _hwuart0_txIntrSer                       0x080044bd   Thumb Code    94  osusart.o(.text)
+    _hwuart0_rxIntrSer                       0x0800451b   Thumb Code    80  osusart.o(.text)
+    .text                                    0x080046bc   Section        0  osprintf.o(.text)
+    STM_EVAL_COMInit                         0x080046bd   Thumb Code   154  osprintf.o(.text)
+    Usart1Config                             0x08004757   Thumb Code    66  osprintf.o(.text)
+    Printf_NVIC_Configuration                0x08004799   Thumb Code    30  osprintf.o(.text)
+    _hwuart1_ScanRxProcess                   0x080047b7   Thumb Code    50  osprintf.o(.text)
+    _hwuart1_1msTask                         0x080047e9   Thumb Code    98  osprintf.o(.text)
+    Usart1RstVariable                        0x0800484b   Thumb Code    86  osprintf.o(.text)
+    Usart1TaskInit                           0x080048a1   Thumb Code    32  osprintf.o(.text)
+    _hwuart1_txIntrSer                       0x080049e7   Thumb Code    94  osprintf.o(.text)
+    _hwuart1_rxIntrSer                       0x08004a45   Thumb Code    80  osprintf.o(.text)
+    .text                                    0x08004c34   Section        0  appsensor.o(.text)
+    ResetUploadEventValue                    0x08004c35   Thumb Code     8  appsensor.o(.text)
+    App100msSensorTask                       0x08004c3d   Thumb Code   112  appsensor.o(.text)
+    sensor_alarm_check                       0x08004cc5   Thumb Code   150  appsensor.o(.text)
+    sensor_scan                              0x08004d5b   Thumb Code    46  appsensor.o(.text)
+    UploadSensorMsg                          0x08004d89   Thumb Code    42  appsensor.o(.text)
+    AppSensorUploadHandle                    0x08004db3   Thumb Code    56  appsensor.o(.text)
+    .text                                    0x08004e90   Section        0  appusart.o(.text)
+    u1_hwuart_Txing                          0x08004ec9   Thumb Code    28  appusart.o(.text)
+    AppZigbeeCheckRxMessage                  0x08004f29   Thumb Code     4  appusart.o(.text)
+    AppZigbeeRxMessage                       0x08004f67   Thumb Code    58  appusart.o(.text)
+    ControllSmartSocket                      0x080050a3   Thumb Code    54  appusart.o(.text)
+    GetSensorCurrentStatus                   0x080050d9   Thumb Code    26  appusart.o(.text)
+    SensorStatusChangedUpload                0x080050f3   Thumb Code    12  appusart.o(.text)
+    .text                                    0x0800511c   Section        0  appkey.o(.text)
+    .text                                    0x080051dc   Section        0  memcpya.o(.text)
+    .text                                    0x08005200   Section        0  memseta.o(.text)
+    .text                                    0x08005224   Section       36  init.o(.text)
+    .text                                    0x08005248   Section        0  __dczerorl2.o(.text)
+    i.__0printf$2                            0x080052a4   Section        0  printf2.o(i.__0printf$2)
+    i.__scatterload_copy                     0x080052c4   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x080052d2   Section        2  handlers.o(i.__scatterload_null)
+    i.__scatterload_zeroinit                 0x080052d4   Section       14  handlers.o(i.__scatterload_zeroinit)
+    i._printf_core                           0x080052e2   Section        0  printf2.o(i._printf_core)
+    _printf_core                             0x080052e3   Thumb Code   208  printf2.o(i._printf_core)
+    .constdata                               0x080053b4   Section       32  osusart.o(.constdata)
+    .constdata                               0x080053d4   Section       12  appusart.o(.constdata)
     .data                                    0x20000000   Section       20  system_stm32f10x.o(.data)
     .data                                    0x20000014   Section       20  stm32f10x_rcc.o(.data)
     APBAHBPrescTable                         0x20000014   Data          16  stm32f10x_rcc.o(.data)
@@ -638,8 +637,6 @@ Image Symbol Table
     _slowTask                                0x20000064   Data           8  ostmr0.o(.data)
     _secTask                                 0x2000006c   Data           8  ostmr0.o(.data)
     .data                                    0x20000074   Section       28  osrf315tx.o(.data)
-    rfTimerCnt                               0x20000074   Data           1  osrf315tx.o(.data)
-    rfDataBit                                0x20000075   Data          25  osrf315tx.o(.data)
     .data                                    0x20000090   Section       10  ostmr1.o(.data)
     _qTask                                   0x20000090   Data           4  ostmr1.o(.data)
     _fTask                                   0x20000094   Data           4  ostmr1.o(.data)
@@ -1086,82 +1083,84 @@ Image Symbol Table
     OsGetSmartControlSwitchValue             0x080038af   Thumb Code    44  oskey.o(.text)
     OsGetNodeAddr                            0x080038db   Thumb Code    68  oskey.o(.text)
     OsRf315Init                              0x08003985   Thumb Code    40  osrf315tx.o(.text)
-    _TIM4_IRQHandler                         0x080039d9   Thumb Code   188  osrf315tx.o(.text)
-    Rf315SendMsg                             0x08003b41   Thumb Code    36  osrf315tx.o(.text)
-    hwtmr2_enable                            0x08003b81   Thumb Code    12  ostmr1.o(.text)
-    hwtmr2_disable                           0x08003b8d   Thumb Code    14  ostmr1.o(.text)
-    hwtmr2_init                              0x08003b9b   Thumb Code    16  ostmr1.o(.text)
-    _TIM2_IRQHandler                         0x08003bab   Thumb Code    58  ostmr1.o(.text)
-    b_hwtmr2_setting                         0x08003c4d   Thumb Code    26  ostmr1.o(.text)
-    t_systmr_insertQuickTask                 0x08003e0d   Thumb Code   178  osqtmr.o(.text)
-    b_systmr_deleteQuickTask                 0x08003ebf   Thumb Code   190  osqtmr.o(.text)
-    b_systmr_init                            0x08003f7d   Thumb Code   222  osqtmr.o(.text)
-    b_systmr_quickFinished                   0x0800405b   Thumb Code    54  osqtmr.o(.text)
-    systmr_set                               0x08004091   Thumb Code    96  osqtmr.o(.text)
-    t_systmr_getValue                        0x080040f1   Thumb Code    64  osqtmr.o(.text)
-    systmr_quickWait                         0x08004131   Thumb Code    56  osqtmr.o(.text)
-    systmr_taskStatusChange                  0x08004169   Thumb Code    88  osqtmr.o(.text)
-    systmr_enable                            0x080041c1   Thumb Code     8  osqtmr.o(.text)
-    systmr_disable                           0x080041c9   Thumb Code     8  osqtmr.o(.text)
-    systmr_releaseTask                       0x080041d1   Thumb Code   176  osqtmr.o(.text)
-    OsUsartInit                              0x0800449d   Thumb Code    16  osusart.o(.text)
-    _USART2_IRQHandler                       0x0800455b   Thumb Code    58  osusart.o(.text)
-    t_hwuart0_ReceiveMessage                 0x08004595   Thumb Code    90  osusart.o(.text)
-    u1_hwuart0_txing                         0x080045ef   Thumb Code    32  osusart.o(.text)
-    t_hwuart0_SendMessage                    0x0800460f   Thumb Code    66  osusart.o(.text)
-    OsPrintf_Init                            0x080048b1   Thumb Code    16  osprintf.o(.text)
-    USART_StoreBufferData                    0x080048c1   Thumb Code    70  osprintf.o(.text)
-    fputc                                    0x08004907   Thumb Code    16  osprintf.o(.text)
-    USART_SendBufferData                     0x08004917   Thumb Code    64  osprintf.o(.text)
-    USART_GetInputString                     0x08004957   Thumb Code   116  osprintf.o(.text)
-    USART_Rx_Buffer_Clear                    0x080049cb   Thumb Code    12  osprintf.o(.text)
-    _USART1_IRQHandler                       0x08004a85   Thumb Code   192  osprintf.o(.text)
-    t_hwuart1_ReceiveMessage                 0x08004b45   Thumb Code    90  osprintf.o(.text)
-    u1_hwuart1_txing                         0x08004b9f   Thumb Code    32  osprintf.o(.text)
-    t_hwuart1_SendMessage                    0x08004bbf   Thumb Code    66  osprintf.o(.text)
-    AppSensorInit                            0x08004c9d   Thumb Code    24  appsensor.o(.text)
-    AppSensorProcess                         0x08004de7   Thumb Code   108  appsensor.o(.text)
-    GetCurrentSensorStatus                   0x08004e53   Thumb Code    12  appsensor.o(.text)
-    UploadRspondConfirmed                    0x08004e5f   Thumb Code    10  appsensor.o(.text)
-    AppUsartInit                             0x08004e8d   Thumb Code    56  appusart.o(.text)
-    t_osscomm_sendMessage                    0x08004ee1   Thumb Code    68  appusart.o(.text)
-    t_osscomm_ReceiveMessage                 0x08004f29   Thumb Code    58  appusart.o(.text)
-    AppUsartProcess                          0x08004f9d   Thumb Code   192  appusart.o(.text)
-    AppRs485CommSendCmd                      0x0800505d   Thumb Code    66  appusart.o(.text)
-    AppSanKeyTask_10ms                       0x08005119   Thumb Code    64  appkey.o(.text)
-    AppKeyDialSwitchInit                     0x08005159   Thumb Code    40  appkey.o(.text)
-    AppKeyProcess                            0x08005181   Thumb Code    72  appkey.o(.text)
-    __aeabi_memcpy                           0x080051d9   Thumb Code    36  memcpya.o(.text)
-    __aeabi_memcpy4                          0x080051d9   Thumb Code     0  memcpya.o(.text)
-    __aeabi_memcpy8                          0x080051d9   Thumb Code     0  memcpya.o(.text)
-    __aeabi_memset                           0x080051fd   Thumb Code    14  memseta.o(.text)
-    __aeabi_memset4                          0x080051fd   Thumb Code     0  memseta.o(.text)
-    __aeabi_memset8                          0x080051fd   Thumb Code     0  memseta.o(.text)
-    __aeabi_memclr                           0x0800520b   Thumb Code     4  memseta.o(.text)
-    __aeabi_memclr4                          0x0800520b   Thumb Code     0  memseta.o(.text)
-    __aeabi_memclr8                          0x0800520b   Thumb Code     0  memseta.o(.text)
-    _memset$wrapper                          0x0800520f   Thumb Code    18  memseta.o(.text)
-    __scatterload                            0x08005221   Thumb Code    28  init.o(.text)
-    __scatterload_rt2                        0x08005221   Thumb Code     0  init.o(.text)
-    __decompress                             0x08005245   Thumb Code     0  __dczerorl2.o(.text)
-    __decompress1                            0x08005245   Thumb Code    92  __dczerorl2.o(.text)
-    __0printf$2                              0x080052a1   Thumb Code    22  printf2.o(i.__0printf$2)
-    __1printf$2                              0x080052a1   Thumb Code     0  printf2.o(i.__0printf$2)
-    __2printf                                0x080052a1   Thumb Code     0  printf2.o(i.__0printf$2)
-    __scatterload_copy                       0x080052c1   Thumb Code    14  handlers.o(i.__scatterload_copy)
-    __scatterload_null                       0x080052cf   Thumb Code     2  handlers.o(i.__scatterload_null)
-    __scatterload_zeroinit                   0x080052d1   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
-    COM_USART_CLK                            0x080053b0   Data           8  osusart.o(.constdata)
-    COM_TX_PORT_CLK                          0x080053b8   Data           8  osusart.o(.constdata)
-    COM_RX_PORT_CLK                          0x080053c0   Data           8  osusart.o(.constdata)
-    COM_TX_PIN                               0x080053c8   Data           4  osusart.o(.constdata)
-    COM_RX_PIN                               0x080053cc   Data           4  osusart.o(.constdata)
-    normalTransaction                        0x080053d0   Data          12  appusart.o(.constdata)
-    Region$$Table$$Base                      0x080053dc   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x080053fc   Number         0  anon$$obj.o(Region$$Table)
+    _TIM4_IRQHandler                         0x080039dd   Thumb Code   198  osrf315tx.o(.text)
+    Rf315SendMsg                             0x08003b4f   Thumb Code    36  osrf315tx.o(.text)
+    hwtmr2_enable                            0x08003b91   Thumb Code    12  ostmr1.o(.text)
+    hwtmr2_disable                           0x08003b9d   Thumb Code    14  ostmr1.o(.text)
+    hwtmr2_init                              0x08003bab   Thumb Code    16  ostmr1.o(.text)
+    _TIM2_IRQHandler                         0x08003bbb   Thumb Code    58  ostmr1.o(.text)
+    b_hwtmr2_setting                         0x08003c5d   Thumb Code    26  ostmr1.o(.text)
+    t_systmr_insertQuickTask                 0x08003e1d   Thumb Code   178  osqtmr.o(.text)
+    b_systmr_deleteQuickTask                 0x08003ecf   Thumb Code   190  osqtmr.o(.text)
+    b_systmr_init                            0x08003f8d   Thumb Code   222  osqtmr.o(.text)
+    b_systmr_quickFinished                   0x0800406b   Thumb Code    54  osqtmr.o(.text)
+    systmr_set                               0x080040a1   Thumb Code    96  osqtmr.o(.text)
+    t_systmr_getValue                        0x08004101   Thumb Code    64  osqtmr.o(.text)
+    systmr_quickWait                         0x08004141   Thumb Code    56  osqtmr.o(.text)
+    systmr_taskStatusChange                  0x08004179   Thumb Code    88  osqtmr.o(.text)
+    systmr_enable                            0x080041d1   Thumb Code     8  osqtmr.o(.text)
+    systmr_disable                           0x080041d9   Thumb Code     8  osqtmr.o(.text)
+    systmr_releaseTask                       0x080041e1   Thumb Code   176  osqtmr.o(.text)
+    OsUsartInit                              0x080044ad   Thumb Code    16  osusart.o(.text)
+    _USART2_IRQHandler                       0x0800456b   Thumb Code    58  osusart.o(.text)
+    t_hwuart0_ReceiveMessage                 0x080045a5   Thumb Code    90  osusart.o(.text)
+    u1_hwuart0_txing                         0x080045ff   Thumb Code    32  osusart.o(.text)
+    t_hwuart0_SendMessage                    0x0800461f   Thumb Code    66  osusart.o(.text)
+    OsPrintf_Init                            0x080048c1   Thumb Code    16  osprintf.o(.text)
+    USART_StoreBufferData                    0x080048d1   Thumb Code    70  osprintf.o(.text)
+    fputc                                    0x08004917   Thumb Code    16  osprintf.o(.text)
+    USART_SendBufferData                     0x08004927   Thumb Code    64  osprintf.o(.text)
+    USART_GetInputString                     0x08004967   Thumb Code   116  osprintf.o(.text)
+    USART_Rx_Buffer_Clear                    0x080049db   Thumb Code    12  osprintf.o(.text)
+    _USART1_IRQHandler                       0x08004a95   Thumb Code   192  osprintf.o(.text)
+    t_hwuart1_ReceiveMessage                 0x08004b55   Thumb Code    90  osprintf.o(.text)
+    u1_hwuart1_txing                         0x08004baf   Thumb Code    32  osprintf.o(.text)
+    t_hwuart1_SendMessage                    0x08004bcf   Thumb Code    66  osprintf.o(.text)
+    AppSensorInit                            0x08004cad   Thumb Code    24  appsensor.o(.text)
+    AppSensorProcess                         0x08004deb   Thumb Code   108  appsensor.o(.text)
+    GetCurrentSensorStatus                   0x08004e57   Thumb Code    12  appsensor.o(.text)
+    UploadRspondConfirmed                    0x08004e63   Thumb Code    10  appsensor.o(.text)
+    AppUsartInit                             0x08004e91   Thumb Code    56  appusart.o(.text)
+    t_osscomm_sendMessage                    0x08004ee5   Thumb Code    68  appusart.o(.text)
+    t_osscomm_ReceiveMessage                 0x08004f2d   Thumb Code    58  appusart.o(.text)
+    AppUsartProcess                          0x08004fa1   Thumb Code   192  appusart.o(.text)
+    AppRs485CommSendCmd                      0x08005061   Thumb Code    66  appusart.o(.text)
+    AppSanKeyTask_10ms                       0x0800511d   Thumb Code    64  appkey.o(.text)
+    AppKeyDialSwitchInit                     0x0800515d   Thumb Code    40  appkey.o(.text)
+    AppKeyProcess                            0x08005185   Thumb Code    72  appkey.o(.text)
+    __aeabi_memcpy                           0x080051dd   Thumb Code    36  memcpya.o(.text)
+    __aeabi_memcpy4                          0x080051dd   Thumb Code     0  memcpya.o(.text)
+    __aeabi_memcpy8                          0x080051dd   Thumb Code     0  memcpya.o(.text)
+    __aeabi_memset                           0x08005201   Thumb Code    14  memseta.o(.text)
+    __aeabi_memset4                          0x08005201   Thumb Code     0  memseta.o(.text)
+    __aeabi_memset8                          0x08005201   Thumb Code     0  memseta.o(.text)
+    __aeabi_memclr                           0x0800520f   Thumb Code     4  memseta.o(.text)
+    __aeabi_memclr4                          0x0800520f   Thumb Code     0  memseta.o(.text)
+    __aeabi_memclr8                          0x0800520f   Thumb Code     0  memseta.o(.text)
+    _memset$wrapper                          0x08005213   Thumb Code    18  memseta.o(.text)
+    __scatterload                            0x08005225   Thumb Code    28  init.o(.text)
+    __scatterload_rt2                        0x08005225   Thumb Code     0  init.o(.text)
+    __decompress                             0x08005249   Thumb Code     0  __dczerorl2.o(.text)
+    __decompress1                            0x08005249   Thumb Code    92  __dczerorl2.o(.text)
+    __0printf$2                              0x080052a5   Thumb Code    22  printf2.o(i.__0printf$2)
+    __1printf$2                              0x080052a5   Thumb Code     0  printf2.o(i.__0printf$2)
+    __2printf                                0x080052a5   Thumb Code     0  printf2.o(i.__0printf$2)
+    __scatterload_copy                       0x080052c5   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x080052d3   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __scatterload_zeroinit                   0x080052d5   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    COM_USART_CLK                            0x080053b4   Data           8  osusart.o(.constdata)
+    COM_TX_PORT_CLK                          0x080053bc   Data           8  osusart.o(.constdata)
+    COM_RX_PORT_CLK                          0x080053c4   Data           8  osusart.o(.constdata)
+    COM_TX_PIN                               0x080053cc   Data           4  osusart.o(.constdata)
+    COM_RX_PIN                               0x080053d0   Data           4  osusart.o(.constdata)
+    normalTransaction                        0x080053d4   Data          12  appusart.o(.constdata)
+    Region$$Table$$Base                      0x080053e0   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x08005400   Number         0  anon$$obj.o(Region$$Table)
     SystemCoreClock                          0x20000000   Data           4  system_stm32f10x.o(.data)
     AHBPrescTable                            0x20000004   Data          16  system_stm32f10x.o(.data)
     learnLedBlinkMode                        0x2000004f   Data           1  osled.o(.data)
+    rfTimerCnt                               0x20000074   Data           1  osrf315tx.o(.data)
+    rfDataBit                                0x20000075   Data          25  osrf315tx.o(.data)
     rfDataBitNum                             0x2000008e   Data           1  osrf315tx.o(.data)
     rfSendStatus                             0x2000008f   Data           1  osrf315tx.o(.data)
     COM_USART                                0x200000a8   Data           8  osusart.o(.data)
@@ -1188,9 +1187,9 @@ Memory Map of the image
 
   Image Entry point : 0x08000131
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00005530, Max: 0x00080000, ABSOLUTE, COMPRESSED[0x0000542c])
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00005534, Max: 0x00080000, ABSOLUTE, COMPRESSED[0x00005430])
 
-    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x000053fc, Max: 0x00080000, ABSOLUTE)
+    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x00005400, Max: 0x00080000, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -1222,27 +1221,27 @@ Memory Map of the image
     0x080034ec   0x000001d0   Code   RO          534    .text               ostmr0.o
     0x080036bc   0x00000170   Code   RO          555    .text               osadc.o
     0x0800382c   0x000000fc   Code   RO          602    .text               oskey.o
-    0x08003928   0x00000258   Code   RO          617    .text               osrf315tx.o
-    0x08003b80   0x000000f4   Code   RO          636    .text               ostmr1.o
-    0x08003c74   0x00000620   Code   RO          653    .text               osqtmr.o
-    0x08004294   0x00000418   Code   RO          668    .text               osusart.o
-    0x080046ac   0x00000578   Code   RO          691    .text               osprintf.o
-    0x08004c24   0x00000268   Code   RO          707    .text               appsensor.o
-    0x08004e8c   0x0000028c   Code   RO          723    .text               appusart.o
-    0x08005118   0x000000c0   Code   RO          751    .text               appkey.o
-    0x080051d8   0x00000024   Code   RO          769    .text               mc_w.l(memcpya.o)
-    0x080051fc   0x00000024   Code   RO          771    .text               mc_w.l(memseta.o)
-    0x08005220   0x00000024   Code   RO         1066    .text               mc_w.l(init.o)
-    0x08005244   0x0000005c   Code   RO         1084    .text               mc_w.l(__dczerorl2.o)
-    0x080052a0   0x00000020   Code   RO          842    i.__0printf$2       mc_w.l(printf2.o)
-    0x080052c0   0x0000000e   Code   RO         1078    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x080052ce   0x00000002   Code   RO         1079    i.__scatterload_null  mc_w.l(handlers.o)
-    0x080052d0   0x0000000e   Code   RO         1080    i.__scatterload_zeroinit  mc_w.l(handlers.o)
-    0x080052de   0x000000d0   Code   RO          849    i._printf_core      mc_w.l(printf2.o)
-    0x080053ae   0x00000002   PAD
-    0x080053b0   0x00000020   Data   RO          670    .constdata          osusart.o
-    0x080053d0   0x0000000c   Data   RO          725    .constdata          appusart.o
-    0x080053dc   0x00000020   Data   RO         1076    Region$$Table       anon$$obj.o
+    0x08003928   0x00000268   Code   RO          617    .text               osrf315tx.o
+    0x08003b90   0x000000f4   Code   RO          636    .text               ostmr1.o
+    0x08003c84   0x00000620   Code   RO          653    .text               osqtmr.o
+    0x080042a4   0x00000418   Code   RO          668    .text               osusart.o
+    0x080046bc   0x00000578   Code   RO          691    .text               osprintf.o
+    0x08004c34   0x0000025c   Code   RO          707    .text               appsensor.o
+    0x08004e90   0x0000028c   Code   RO          723    .text               appusart.o
+    0x0800511c   0x000000c0   Code   RO          751    .text               appkey.o
+    0x080051dc   0x00000024   Code   RO          769    .text               mc_w.l(memcpya.o)
+    0x08005200   0x00000024   Code   RO          771    .text               mc_w.l(memseta.o)
+    0x08005224   0x00000024   Code   RO         1066    .text               mc_w.l(init.o)
+    0x08005248   0x0000005c   Code   RO         1084    .text               mc_w.l(__dczerorl2.o)
+    0x080052a4   0x00000020   Code   RO          842    i.__0printf$2       mc_w.l(printf2.o)
+    0x080052c4   0x0000000e   Code   RO         1078    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x080052d2   0x00000002   Code   RO         1079    i.__scatterload_null  mc_w.l(handlers.o)
+    0x080052d4   0x0000000e   Code   RO         1080    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x080052e2   0x000000d0   Code   RO          849    i._printf_core      mc_w.l(printf2.o)
+    0x080053b2   0x00000002   PAD
+    0x080053b4   0x00000020   Data   RO          670    .constdata          osusart.o
+    0x080053d4   0x0000000c   Data   RO          725    .constdata          appusart.o
+    0x080053e0   0x00000020   Data   RO         1076    Region$$Table       anon$$obj.o
 
 
     Execution Region RW_IRAM1 (Base: 0x20000000, Size: 0x00001828, Max: 0x00010000, ABSOLUTE, COMPRESSED[0x00000030])
@@ -1283,7 +1282,7 @@ Image component sizes
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
        192         16          0          3          0       1004   appkey.o
-       616         36          0         14         20       3261   appsensor.o
+       604         36          0         14         20       3233   appsensor.o
        652         30         12          5        780       3549   appusart.o
         60          0          0          0          0     267215   main.o
        220         20          0          0          0       1633   misc.o
@@ -1292,7 +1291,7 @@ Image component sizes
        480         38          0          4          0       1192   osled.o
       1400        166          0         54        766       5089   osprintf.o
       1568         52          0         12        800       4499   osqtmr.o
-       600         28          0         28          0       2712   osrf315tx.o
+       616         30          0         28          0       2769   osrf315tx.o
       4316        130          0         36       1200       7954   ostmr.o
        464         36          0         36          0       3440   ostmr0.o
        244         14          0         10          0       1829   ostmr1.o
@@ -1307,7 +1306,7 @@ Image component sizes
        476         36          0         20          0       1807   system_stm32f10x.o
 
     ----------------------------------------------------------------------
-     20628        952        380        304       5876     586420   Object Totals
+     20632        954        380        304       5876     586449   Object Totals
          0          0         32          0          0          0   (incl. Generated)
          6          0          0          4          7          0   (incl. Padding)
 
@@ -1351,15 +1350,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     21120        978        380        308       5876     584760   Grand Totals
-     21120        978        380         48       5876     584760   ELF Image Totals (compressed)
-     21120        978        380         48          0          0   ROM Totals
+     21124        980        380        308       5876     584789   Grand Totals
+     21124        980        380         48       5876     584789   ELF Image Totals (compressed)
+     21124        980        380         48          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                21500 (  21.00kB)
+    Total RO  Size (Code + RO Data)                21504 (  21.00kB)
     Total RW  Size (RW Data + ZI Data)              6184 (   6.04kB)
-    Total ROM Size (Code + RO Data + RW Data)      21548 (  21.04kB)
+    Total ROM Size (Code + RO Data + RW Data)      21552 (  21.05kB)
 
 ==============================================================================
 

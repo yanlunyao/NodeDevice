@@ -16,3 +16,4 @@
 .\output\osrf315tx.o: ..\Libraries\inc\stm32f10x_usart.h
 .\output\osrf315tx.o: ..\Libraries\inc\misc.h
 .\output\osrf315tx.o: ..\Os\hfiles\osled.h
+.\output\osrf315tx.o: ..\Os\hfiles\ostmr.h
