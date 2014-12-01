@@ -3,7 +3,6 @@
 #include "hw_config.h"
 #include "osadc.h"
 #include "ostmr.h"
-#include "osprintf.h"
 #include "appsensor.h"
 #include "appusart.h"
 

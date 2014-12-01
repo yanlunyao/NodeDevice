@@ -14,13 +14,7 @@
 #define __APPUSART_H
 
 #include "osusart.h"
-#include "osprintf.h"
 
-#define  USART1_COM		0
-#define  USART2_COM		1
-//串口1为0，串口2为1
-
-#define ZIGBEE_INFO_LENGTH				USART_TX_DATA_SIZE-0
 /******************************************************************************/
 //#pragma  pack  (1) 
 ////定义的协议结构体
@@ -48,14 +42,14 @@ typedef enum
   COM_STATUS_RECEIVE,
   COM_STATUS_ERROR,
   COM_STATUS_FINISH
-} zigbeeCommStatus_t;
+} CommStatus_t;
 
 //typedef enum
 //{
 //  SEND_MASTER =0,
 //  SEND_RESPOND,
 //} cmdType_t;
-typedef void (* functionP_t) (void);
+
 
 #pragma pack(1)
 typedef struct
@@ -110,8 +104,6 @@ typedef struct
 
 
 extern void AppUsartInit(void);
-extern scommReturn_t  t_osscomm_ReceiveMessage(u8  *rxData, u16 *rxLen, u8 port);  //upper layer usart receive function  
-extern scommReturn_t  t_osscomm_sendMessage(u8  *txData, u16 txLen, u8 port); //upper layer usart send function  
 extern void AppUsartProcess(void);
 extern s8 AppRs485CommSendCmd(u16 dataLen, u8 * data);
 #endif 

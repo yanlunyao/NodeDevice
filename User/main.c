@@ -8,6 +8,7 @@
 #include "appkey.h"
 #include "apprf315tx.h"
 #include "appusart.h"
+#include "appusarttest.h"
 
 //#define USE_WATCHDOG
 
@@ -24,6 +25,7 @@ int main()
 		AppSensorProcess();
 		AppKeyProcess();	
 		AppUsartProcess();
+		AppUsartTestProcess();
 		#ifdef 	USE_WATCHDOG
 		IwdgFeed();
 		#endif
@@ -39,6 +41,7 @@ static void AppInit()
 	//delay_init(72);	 
 	OsLedInit(); 
 	AppUsartInit();
+	AppUsartTestInit();
 	AppSensorInit();
 	AppKeyDialSwitchInit();
 	#ifdef USE_WATCHDOG

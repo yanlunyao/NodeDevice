@@ -16,7 +16,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "osqtmr.h"
-#include "osprintf.h"
+#include "osusart1.h"
 
 static  volatile  u8               _u1WrTxRegEn;
 static  volatile  u8               _u1RxEn;        //rx enable flag

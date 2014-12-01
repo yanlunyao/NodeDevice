@@ -1,26 +1,32 @@
 /**
   ******************************************************************************
-  * @file    osprintf.h
-  * @author  yanly
+  * @file    
+  * @author  
   * @version 
   * @date    
-  * @brief   usart interupt implement send and receive (hardware os layer)
+  * @brief  
   ******************************************************************************
+  * @copy
   */ 
-
+  
+/* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __OSUSART_H
 #define __OSUSART_H
 
-/* Includes ------------------------------------------------------------------*/
-#include "hw_usart.h"
+#include "osusart1.h"
+#include "osusart2.h"
 
-#define EVAL_COM1_USARTx    USART2
+#define  USART1_COM		0
+#define  USART2_COM		1
+//串口1为0，串口2为1
+
+#define ZIGBEE_INFO_LENGTH				USART_TX_DATA_SIZE-0
 
 
-extern void OsUsartInit(void);
-extern scommReturn_t  t_hwuart0_ReceiveMessage(scommRcvBuf_t *rxMsg);
-extern scommReturn_t  t_hwuart0_SendMessage(scommTxBuf_t*  txMsg);
-extern u8  u1_hwuart0_txing(void);
 
-#endif
+typedef void (* functionP_t) (void);
+/******************************************************************************/
+extern scommReturn_t  t_osscomm_ReceiveMessage(u8  *rxData, u16 *rxLen, u8 port);  //upper layer usart receive function  
+extern scommReturn_t  t_osscomm_sendMessage(u8  *txData, u16 txLen, u8 port); //upper layer usart send function  
 
+#endif 

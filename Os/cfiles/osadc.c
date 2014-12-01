@@ -20,7 +20,7 @@
 static void ADC_GPIO_Configuration(void)
 {
   GPIO_InitTypeDef GPIO_InitStructure;
-                     
+                        
   GPIO_InitStructure.GPIO_Pin = ADC_SENSOR1_PIN |ADC_SENSOR2_PIN |ADC_SENSOR3_PIN;
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN;
   GPIO_Init(GPIO_SENSOR123_PORT, &GPIO_InitStructure);
