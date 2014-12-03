@@ -15,8 +15,6 @@
 #include "osqtmr.h"
 
 /*valiable*************************************************************************************/
-static  volatile  u16               _u0txCnt;
-static  volatile  u16               _u0rxCnt;
 static  volatile  u8               _u0WrTxRegEn;
 static  volatile  u8               _u0RxEn;        //rx enable flag
 static  volatile  u8               _u0TxEn;        //tx enable flag
@@ -110,19 +108,15 @@ static void UsartConfig(void)
 {
 	USART_InitTypeDef USART_InitStructure;
 	
-	USART_InitStructure.USART_BaudRate = 115200;//115200;
+	USART_InitStructure.USART_BaudRate = 9600;//115200;
   USART_InitStructure.USART_WordLength = USART_WordLength_8b;
   USART_InitStructure.USART_StopBits = USART_StopBits_1;
   USART_InitStructure.USART_Parity = USART_Parity_No;
   USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
   USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
 
-//#ifdef USE_USART2
   STM_EVAL_COMInit(COM1, &USART_InitStructure);
-//#else
-//  STM_EVAL_COMInit(COM2, &USART_InitStructure);
-//#endif
-//  USART_ITConfig(EVAL_COMx, USART_IT_TXE, ENABLE);
+
 	USART_ITConfig(EVAL_COM1, USART_IT_TXE, DISABLE); //add yan141111
   USART_ITConfig(EVAL_COM1, USART_IT_RXNE, ENABLE);
 }
@@ -145,7 +139,7 @@ static void STM_EVAL_COMInit(COM_TypeDef COM, USART_InitTypeDef* USART_InitStruc
 
   if (COM == COM1)
   {
-    GPIO_PinRemapConfig(GPIO_Remap_USART2, ENABLE);
+    //GPIO_PinRemapConfig(GPIO_Remap_USART2, ENABLE);
     RCC_APB1PeriphClockCmd(COM_USART_CLK[COM], ENABLE);
   }
   else
@@ -176,7 +170,7 @@ static void STM_EVAL_COMInit(COM_TypeDef COM, USART_InitTypeDef* USART_InitStruc
 /******interupt fun handler***********/
 void _USART2_IRQHandler(void)
 {
-  if (USART_GetITStatus(EVAL_COM1_USARTx, USART_IT_RXNE) != RESET)
+  if (USART_GetITStatus(USART2, USART_IT_RXNE) != RESET)
   {
     /* received data */
 		_hwuart0_rxIntrSer();
@@ -184,13 +178,13 @@ void _USART2_IRQHandler(void)
 
   /* If overrun condition occurs, clear the ORE flag 
                               and recover communication */
-  if (USART_GetFlagStatus(EVAL_COM1_USARTx, USART_FLAG_ORE) != RESET)
+  if (USART_GetFlagStatus(USART2, USART_FLAG_ORE) != RESET)
   {
-    (void)USART_ReceiveData(EVAL_COM1_USARTx);
+    (void)USART_ReceiveData(USART2);
 		_u0rxErrflag = TRUE;
   }
 
-  if(USART_GetITStatus(EVAL_COM1_USARTx, USART_IT_TXE) != RESET)
+  if(USART_GetITStatus(USART2, USART_IT_TXE) != RESET)
   {   
     /* Write one byte to the transmit data register */
 		//if(_u0WrTxRegEn == TRUE)
@@ -247,13 +241,13 @@ static  void  _hwuart0_rxIntrSer(void)
 	    _u0RcvStates = URX_BUF_BUSY;
 	    _u0rxCnt = 0;
 	  }	
-    _pu0RxPtr->pscommRcvContent[_u0rxCnt] = USART_ReceiveData(EVAL_COM1_USARTx);
+    _pu0RxPtr->pscommRcvContent[_u0rxCnt] = USART_ReceiveData(USART2);
 		_u0rxCnt++;
 		_u0RxCharTmr = _u0CharTmrRestart;  //一直循坏扫描这个值，值为0时表示串口帧接收结束
 	}	
 	else
 	{//clear rx fifo
-		(void)USART_ReceiveData(EVAL_COM1_USARTx);
+		(void)USART_ReceiveData(USART2);
 	}
 }
 
@@ -264,14 +258,14 @@ static  void  _hwuart0_txIntrSer(void)
     if(_u0txCnt < _pu0TxPtr->scommTxLen) 
     {
 			/* Write one byte to the transmit data register */
-			USART_SendData(EVAL_COM1_USARTx, _pu0TxPtr->pscommTxContent[_u0txCnt]);
+			USART_SendData(USART2, _pu0TxPtr->pscommTxContent[_u0txCnt]);
 			_u0txCnt++;
       _u0TxCharTmr = _u0CharTmrRestart;
     }
     else
     {
 //      _u0WrTxRegEn = FALSE;   
-			USART_ITConfig(EVAL_COM1_USARTx, USART_IT_TXE, DISABLE); //add yan141111
+			USART_ITConfig(USART2, USART_IT_TXE, DISABLE); //add yan141111
       _u0Txing = FALSE;
       
 //			_u0RxEn = ENABLE;      
@@ -440,7 +434,7 @@ scommReturn_t  t_hwuart0_SendMessage(scommTxBuf_t*  txMsg)
 			_u0Txing = TRUE;
 
 //			/* Write first byte to the transmit data register */
-//			USART_SendData(USARTx, _pu0TxPtr->pscommTxContent[0]);//[_u0txCnt-1]);
+//			USART_SendData(USART2, _pu0TxPtr->pscommTxContent[0]);//[_u0txCnt-1]);
       return(SCOMM_RET_OK);
     }
     else
@@ -456,5 +450,5 @@ scommReturn_t  t_hwuart0_SendMessage(scommTxBuf_t*  txMsg)
 
 u8  u1_hwuart0_txing(void)
 {
-	return ((USART_GetITStatus(EVAL_COM1_USARTx, USART_IT_TXE) == SET) ||(_u0Txing == TRUE));
+	return ((USART_GetITStatus(USART2, USART_IT_TXE) == SET) ||(_u0Txing == TRUE));
 }

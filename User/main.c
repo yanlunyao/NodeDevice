@@ -24,8 +24,9 @@ int main()
 	{
 		AppSensorProcess();
 		AppKeyProcess();	
-		AppUsartProcess();
-		AppUsartTestProcess();
+		//AppUsartProcess();
+		AppUsartTest();
+		//AppUsart1Process();
 		#ifdef 	USE_WATCHDOG
 		IwdgFeed();
 		#endif
@@ -41,7 +42,7 @@ static void AppInit()
 	//delay_init(72);	 
 	OsLedInit(); 
 	AppUsartInit();
-	AppUsartTestInit();
+	AppUsart1Init();
 	AppSensorInit();
 	AppKeyDialSwitchInit();
 	#ifdef USE_WATCHDOG

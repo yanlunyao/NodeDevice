@@ -294,7 +294,7 @@ static void UploadSensorMsg(u8 channel)
 	tempData[3] = channel;
 	tempData[4] = uploadSensorStsEvent[channel].SensorMsg;
 	tempLen = 5;
-	//AppRs485CommSendCmd(tempLen, tempData);
+	AppRs485CommSendCmd(tempLen, tempData);
 }	
 void AppSensorProcess(void)
 {
@@ -319,7 +319,7 @@ void AppSensorProcess(void)
 			uploadSensorStsEvent[i].needUpRespondConfirm = TRUE;//置需要确认
 			uploadSensorStsEvent[i].Counter = REUPLOAD_SENSOR_STATUS_CONTER; //开启2s定时
 		  uploadSensorStsEvent[i].uploadFlag = FALSE;//置上传标记为false	
-			UploadSensorMsg(i);//上传消息
+			//UploadSensorMsg(i);//上传消息
 			s_old_status_buf[i] = s_new_status_buf[i];	
 		}
 	}
@@ -334,7 +334,7 @@ static void AppSensorUploadHandle()
 		if(uploadSensorStsEvent[i].uploadFlag)
 		{	
 			//上传对应sensor的消息  
-			UploadSensorMsg(i);			
+			//UploadSensorMsg(i);			
 			#ifdef DEBUG_PRINTF
 			printf("sensor %d be alarm \r\n",i+1);
 			#endif

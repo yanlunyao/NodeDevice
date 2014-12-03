@@ -205,4 +205,10 @@ static void SensorStatusChangedUpload(void)
 	UploadRspondConfirmed(_appRsRxBuf.buffer.info[3]);
 }	
 //------------------------------------------------------------------------------------//
-
+void AppUsartTest()
+{
+	if(t_osscomm_ReceiveMessage((u8 *)_pRcvProMsg, (u16 *)&_appRsRxBuf.dataLen, USART2_COM) == SCOMM_RET_OK)
+	{
+		t_osscomm_sendMessage((u8 *)_pRcvProMsg, _appRsRxBuf.dataLen, USART1_COM);
+	}
+}	

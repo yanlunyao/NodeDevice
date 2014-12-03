@@ -19,7 +19,7 @@
 static u8 _sysLed250msCounter;
 union_byte learnLedBlinkMode;
 
-static void OsLedBlinkTask_250ms(void);
+static void OsLedBlinkTask(void);
 static void LearnLedLight(BitAction lightStatus);
 
 void OsLedInit(void)
@@ -28,11 +28,11 @@ void OsLedInit(void)
 
   RCC_APB2PeriphClockCmd(RCC_GPIO_LED , ENABLE);  //RCC_APB2Periph_AFIO
   
-  /* LED1 pins configuration */
-  GPIO_InitStructure.GPIO_Pin = GPIO_LED_STATUS;
-  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
-  GPIO_Init(LED_STATUS_PORT, &GPIO_InitStructure);
+//  /* LED1 pins configuration */
+//  GPIO_InitStructure.GPIO_Pin = GPIO_LED_STATUS;
+//  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+//  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+//  GPIO_Init(LED_STATUS_PORT, &GPIO_InitStructure);
 	
 	/* LED2 pins configuration */
   GPIO_InitStructure.GPIO_Pin = GPIO_LED_LEARN;
@@ -40,10 +40,10 @@ void OsLedInit(void)
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
   GPIO_Init(LED_LEARN_PORT, &GPIO_InitStructure);
 	
-	learnLedBlinkMode.int8u = LEARN_LED_ALWAYS_OFF;
-	t_ostmr_insertTask(OsLedBlinkTask_250ms, 250, OSTMR_PERIODIC);
+	learnLedBlinkMode.int8u = LEARN_LED_NORMAL;
+	t_ostmr_insertTask(OsLedBlinkTask, 120, OSTMR_PERIODIC);
 	
-	LED_STATUS_CLOSE;
+	//LED_STATUS_CLOSE;
 	LearnLedLight(LIGTHOFF);//关learn led
 }
 static void LearnLedLight(BitAction lightStatus)
@@ -53,13 +53,22 @@ static void LearnLedLight(BitAction lightStatus)
 /********************************************************************************
 @brief ：250ms定时器扫描一次，判断bit值
 ******************************************************************************/
-void OsLedBlinkTask_250ms()
+void OsLedBlinkTask()
 {
 	static u8 statusLedCnt =0;
 	static u8 statusLedInvertEd = 0;
-	if(learnLedBlinkMode.int8u != LEARN_LED_ALWAYS_OFF)
+	if(learnLedBlinkMode.int8u != LEARN_LED_NORMAL)
 	{	
-		 switch(_sysLed250msCounter++)
+//	if(learnLedBlinkMode.int8u == LEARN_LED_BLINK)
+//	{
+//		statusLedCnt++;
+//		if(statusLedCnt > 8)
+//		{
+//			learnLedBlinkMode.int8u = LEARN_LED_NORMAL;
+//			statusLedCnt = 0;
+//		}	
+//	}	
+		switch(_sysLed250msCounter++)
 		{
 				case 0:
 				if(learnLedBlinkMode.ByteBit8.b0)
@@ -141,33 +150,32 @@ void OsLedBlinkTask_250ms()
 					LearnLedLight(LIGTHOFF);
 				}
 				_sysLed250msCounter = 0;
-				learnLedBlinkMode.int8u = LEARN_LED_ALWAYS_OFF;
+				learnLedBlinkMode.int8u = LEARN_LED_NORMAL;
 			break;
 			default:
-				learnLedBlinkMode.int8u = LEARN_LED_ALWAYS_OFF;
+				learnLedBlinkMode.int8u = LEARN_LED_NORMAL;
 				_sysLed250msCounter = 0;
 			break;
 		}
 	}
 	else
 	{
-		LearnLedLight(LIGTHOFF);
-	}	
-	statusLedCnt++;
-	if(statusLedCnt  ==4)
-	{
-		statusLedCnt =0;
-		statusLedInvertEd = ~statusLedInvertEd;
-		if(statusLedInvertEd)
+		//LearnLedLight(LIGTHOFF);
+		statusLedCnt++;
+		if(statusLedCnt  ==10)
 		{
-			LED_STATUS_OPEN;
-		}
-		else
-		{
-			LED_STATUS_CLOSE;
+			statusLedCnt =0;
+			statusLedInvertEd = ~statusLedInvertEd;
+			if(statusLedInvertEd)
+			{
+				LearnLedLight(LIGHTON);
+			}
+			else
+			{
+				LearnLedLight(LIGTHOFF);
+			}	
 		}	
 	}	
-	
 }	
 
 

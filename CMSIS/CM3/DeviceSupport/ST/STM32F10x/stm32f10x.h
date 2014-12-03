@@ -559,7 +559,6 @@ typedef struct
     u8 h:4;                          //1
 }struct_halfbytex2;
 
-
 typedef union 
 {
     u8 								int8u;
@@ -567,7 +566,37 @@ typedef union
     struct_halfbytex2 	halfbytex2;
 }union_byte;
 
+typedef struct
+{
+    u8 b0:1;                       
+    u8 b1:1;                       
+    u8 b2:1;                         
+    u8 b3:1;                       
+    u8 b4:1;                       
+    u8 b5:1;                       
+    u8 b6:1;                       
+    u8 b7:1; 
+    u8 b8:1;                       
+    u8 b9:1;                       
+    u8 b10:1;                         
+    u8 b11:1;                       
+    u8 b12:1;                       
+    u8 b13:1;                       
+    u8 b14:1;                       
+    u8 b15:1; 	
+}struct_2ByteBit16;
+typedef struct
+{
+    u8 l:8;                          //0
+    u8 h:8;                          //1
+}struct_onebytex2;
 
+typedef union 
+{
+    u16 								int16u;
+		struct_2ByteBit16		ByteBit16 ;
+    struct_onebytex2 		onebytex2;
+}union_2byte;
 /**********************************************************************************/
 /*!< STM32F10x Standard Peripheral Library old definitions (maintained for legacy purpose) */
 #define HSEStartUp_TimeOut   HSE_STARTUP_TIMEOUT

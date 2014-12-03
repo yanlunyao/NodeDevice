@@ -31,7 +31,7 @@ const functionP_t normalTransactionTest[]=
 	ControllSmartSocket,
 };
 //------------------------------------------------------------------------------------//
-void AppUsartTestInit()
+void AppUsart1Init()
 {
 	OsPrintf_Init();
 //	memset((u1_t *)_rsvBuf, 0x00, sizeof(_rsvBuf));
@@ -48,7 +48,7 @@ void AppUsartTestInit()
 	
 }	
 //------------------------------------------------------------------------------------//
-void AppUsartTestProcess()
+void AppUsart1Process()
 {
 	u16 __bufferLen;
   if(_commStatusTest == 1)

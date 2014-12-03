@@ -106,4 +106,7 @@ typedef struct
 extern void AppUsartInit(void);
 extern void AppUsartProcess(void);
 extern s8 AppRs485CommSendCmd(u16 dataLen, u8 * data);
+
+extern void AppUsartTest(void);//debug 141203
+
 #endif 

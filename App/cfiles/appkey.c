@@ -12,6 +12,7 @@
 #include "osled.h"
 #include "osrf315tx.h"
 #include "appkey.h"
+#include "osusart.h"   //debug141203
 
 
 /*define********************************************************************************************************/	
@@ -56,6 +57,7 @@ void AppKeyDialSwitchInit()
 }
 void AppKeyProcess()
 {
+	u8 temp[8] = {1,2,3,4,5,6,7,8};
 	if(learnKeyStatus == KEY_STATUS_REAL_PRESS)
 	{
 		u8 learningCode[3];
@@ -69,6 +71,8 @@ void AppKeyProcess()
 			
 			//操作完成之后要置按键状态空闲
 			learnKeyStatus = KEY_STATUS_IDLE;
+			//--------------------------------------------------------------------------------//
+			t_osscomm_sendMessage(temp, sizeof(temp), USART2_COM); //
 		}	
 	}
   else if(learnKeyStatus == KEY_STATUS_IDLE)
