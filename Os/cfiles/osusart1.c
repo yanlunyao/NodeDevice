@@ -124,18 +124,14 @@ static void Usart1Config(void)
 {
 	USART_InitTypeDef USART_InitStructure;
 	
-	USART_InitStructure.USART_BaudRate = 115200;
+	USART_InitStructure.USART_BaudRate = 9600;
   USART_InitStructure.USART_WordLength = USART_WordLength_8b;
   USART_InitStructure.USART_StopBits = USART_StopBits_1;
   USART_InitStructure.USART_Parity = USART_Parity_No;
   USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
   USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
 
-//#ifdef USE_USART2
-//  STM_EVAL_COMInit(COM1, &USART_InitStructure);
-//#else
   STM_EVAL_COMInit(COM2, &USART_InitStructure);
-//#endif
   /* Enable the EVAL_COM1 Transmoit interrupt: this interrupt is generated when the 
      EVAL_COM1 transmit data register is empty */  
 //  USART_ITConfig(EVAL_COM2, USART_IT_TXE, ENABLE);
@@ -318,7 +314,7 @@ static void STM_EVAL_COMInit(COM_TypeDef COM, USART_InitTypeDef* USART_InitStruc
   if (COM == COM1)
   {
     /* Enable the USART2 Pins Software Remapping */
-    GPIO_PinRemapConfig(GPIO_Remap_USART2, ENABLE);
+    //GPIO_PinRemapConfig(GPIO_Remap_USART2, ENABLE);
     RCC_APB1PeriphClockCmd(COM_USART_CLK[COM], ENABLE);
   }
   else

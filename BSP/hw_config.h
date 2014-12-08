@@ -15,9 +15,9 @@
 #include "stm32f10x.h"
 
 //led 
-#define RCC_GPIO_LED                                RCC_APB2Periph_GPIOD |RCC_APB2Periph_GPIOC
+#define RCC_GPIO_LED                                RCC_APB2Periph_GPIOC //|RCC_APB2Periph_GPIOC
 #define LED_STATUS_PORT															GPIOC                              
-#define LED_LEARN_PORT															GPIOD   
+#define LED_LEARN_PORT															GPIOC    //GPIOD
 #define GPIO_LED_STATUS                             GPIO_Pin_7    
 #define GPIO_LED_LEARN                              GPIO_Pin_7
 //#define GPIO_LED_ALL                                GPIO_LED1 |GPIO_LED2 //|GPIO_LED3 |GPIO_LED4 
@@ -123,12 +123,12 @@
 #define EVAL_COM1_STR                    "USART2"
 #define EVAL_COM1                        USART2
 #define EVAL_COM1_CLK                    RCC_APB1Periph_USART2
-#define EVAL_COM1_TX_PIN                 GPIO_Pin_5
-#define EVAL_COM1_TX_GPIO_PORT           GPIOD
-#define EVAL_COM1_TX_GPIO_CLK            RCC_APB2Periph_GPIOD
-#define EVAL_COM1_RX_PIN                 GPIO_Pin_6
-#define EVAL_COM1_RX_GPIO_PORT           GPIOD
-#define EVAL_COM1_RX_GPIO_CLK            RCC_APB2Periph_GPIOD
+#define EVAL_COM1_TX_PIN                 GPIO_Pin_2
+#define EVAL_COM1_TX_GPIO_PORT           GPIOA
+#define EVAL_COM1_TX_GPIO_CLK            RCC_APB2Periph_GPIOA
+#define EVAL_COM1_RX_PIN                 GPIO_Pin_3
+#define EVAL_COM1_RX_GPIO_PORT           GPIOA
+#define EVAL_COM1_RX_GPIO_CLK            RCC_APB2Periph_GPIOA
 #define EVAL_COM1_USART_IRQn             USART2_IRQn
 
    
