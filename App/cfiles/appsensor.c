@@ -10,15 +10,19 @@
 /*****************
 define 
 *****************/
+//sensor value
 #define	 	SENSOR_NORMAL_MIN_VALUE							1380
 #define		SENSOR_NORMAL_MAX_VALUE							1480
 #define		SENSOR_ALARM_OPEN_THRESHOLD_VALUE		4000
 #define		SENSOR_SHORT_THRESHOLD_VALUE				20
 #define		SENSOR_PARALLEL_THRESHOLD_VALUE
-
+//sensor num
 #define		SENSOR_NUM													5
+//sensor upload event parameter
 #define   REUPLOAD_SENSOR_STATUS_CONTER				20  //2s
+#define 	REUPLOAD_CNT_MAX										3
 
+//
 /*
 ********************************************************************************
   variable declaration
@@ -37,10 +41,11 @@ u16 g_sensor_cnt = 0;				// sensor count
 //upload sensor event
 typedef struct
 {
-	bool_t 		needUpRespondConfirm;
-	bool_t 		uploadFlag;
-	u8     		Counter;
-	u8     		SensorMsg;	
+	bool_t 		needUpRespondConfirm;  //需要确认的标记
+	u8        uploadCnt;						 //重发次数：重发超过3次不再重发，此时置needUpRespondConfirm=false
+	bool_t 		uploadFlag;            //1s计时到的标记
+	u8     		Counter;               //计时值
+	u8     		SensorMsg;	           //消息
 }uploadSensorEvent_t;	
 static uploadSensorEvent_t  uploadSensorStsEvent[SENSOR_NUM];
 //bool_t UpRespondConfirmed[SENSOR_NUM];
@@ -57,7 +62,7 @@ static void UploadSensorMsg(u8 channel);
 
 static void ResetUploadEventValue(void)
 {
-	memset(uploadSensorStsEvent, 0, sizeof(uploadSensorEvent_t));
+	memset(uploadSensorStsEvent, 0, sizeof(uploadSensorEvent_t)*SENSOR_NUM);
 //	memset(UpRespondConfirmed, 1, sizeof(UpRespondConfirmed));
 }
 static void App100msSensorTask(void)
@@ -317,9 +322,10 @@ void AppSensorProcess(void)
 				uploadSensorStsEvent[i].SensorMsg = SENSOR_NORMAL_STATE;//记录此消息		
 			}
 			uploadSensorStsEvent[i].needUpRespondConfirm = TRUE;//置需要确认
-			uploadSensorStsEvent[i].Counter = REUPLOAD_SENSOR_STATUS_CONTER; //开启2s定时
-		  uploadSensorStsEvent[i].uploadFlag = FALSE;//置上传标记为false	
-			//UploadSensorMsg(i);//上传消息
+			uploadSensorStsEvent[i].uploadCnt = 0; //重上传次数
+			//uploadSensorStsEvent[i].Counter = REUPLOAD_SENSOR_STATUS_CONTER; //开启2s定时
+		  uploadSensorStsEvent[i].uploadFlag = TRUE;//置上传标记为	
+			//UploadSensorMsg(i);//上传消息 //上传在AppSensorUploadHandle里集中处理
 			s_old_status_buf[i] = s_new_status_buf[i];	
 		}
 	}
@@ -331,10 +337,15 @@ static void AppSensorUploadHandle()
 	i = s_channel -1;
 	if(uploadSensorStsEvent[i].needUpRespondConfirm) //respond confirmed 在串口接收里置FASLE
 	{
+		if(uploadSensorStsEvent[i].uploadCnt >= REUPLOAD_CNT_MAX)
+		{
+			memset(&uploadSensorStsEvent[i], 0, sizeof(uploadSensorEvent_t)); //复位
+		}	
 		if(uploadSensorStsEvent[i].uploadFlag)
 		{	
 			//上传对应sensor的消息  
 			//UploadSensorMsg(i);			
+			uploadSensorStsEvent[i].uploadCnt +=1;
 			#ifdef DEBUG_PRINTF
 			printf("sensor %d be alarm \r\n",i+1);
 			#endif
