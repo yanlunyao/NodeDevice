@@ -40,6 +40,18 @@
 20141202:
 1. 状态灯和rf信号灯。合二为1
 +-------------------------------------------------------------------------------+
+
 20141208: 未测试
 1. 上传传感器命令，重发3次就停止重发；
 2. 修改上传事件初始复位函数bug；
++-------------------------------------------------------------------------------+
+
+20141209:
+1. hw_config.h: learn led modify config in PIN PD7 .
+2. dial switch config add 2pin in nodeaddr, pin PD1,PD2
+3. appsensor.c: modify #define 
+4. appusart.c: add record smart socket operation
+5. osrf315tx.c: add record smart socket operation fun;add get smart socket status;
+
++-------------------------------------------------------------------------------+
+  

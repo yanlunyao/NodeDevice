@@ -37,7 +37,7 @@ void OsDialSwitchInit()
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
   GPIO_InitStructure.GPIO_Pin = GPIO_SMART_SOCKET_ADDR1|GPIO_SMART_SOCKET_ADDR2|GPIO_SMART_SOCKET_ADDR3| \
 																GPIO_SMART_SOCKET_CONTROL1|GPIO_SMART_SOCKET_CONTROL2| \
-																GPIO_NODE_ADDR1|GPIO_NODE_ADDR2|GPIO_NODE_ADDR3;
+																GPIO_NODE_ADDR1|GPIO_NODE_ADDR2|GPIO_NODE_ADDR3|GPIO_NODE_ADDR4|GPIO_NODE_ADDR5;
   GPIO_Init(GPIO_DIALSWITCH_PORT, &GPIO_InitStructure);
 }
 /*********************************************************************************************************
@@ -64,12 +64,14 @@ u8 OsGetSmartControlSwitchValue() //45
 }
 u8 OsGetNodeAddr()   //678
 {
-	u8 __temp,__temp1,__temp2,__temp3;
-	__temp=__temp1=__temp2=__temp3=0;
-	__temp1 = (GPIO_ReadInputDataBit(GPIO_DIALSWITCH_PORT, GPIO_NODE_ADDR3))<<2;
-	__temp2 = (GPIO_ReadInputDataBit(GPIO_DIALSWITCH_PORT, GPIO_NODE_ADDR2)) <<1;	
-	__temp3 = GPIO_ReadInputDataBit(GPIO_DIALSWITCH_PORT, GPIO_NODE_ADDR3);
-  __temp = __temp1|__temp2|__temp3 ;	
+	u8 __temp,__temp1,__temp2,__temp3,__temp4,__temp5;
+	__temp=__temp1=__temp2=__temp3=__temp4=__temp5=0;
+	__temp1 = (GPIO_ReadInputDataBit(GPIO_DIALSWITCH_PORT, GPIO_NODE_ADDR5))<<4;
+	__temp2 = (GPIO_ReadInputDataBit(GPIO_DIALSWITCH_PORT, GPIO_NODE_ADDR4))<<3;
+	__temp3 = (GPIO_ReadInputDataBit(GPIO_DIALSWITCH_PORT, GPIO_NODE_ADDR3))<<2;
+	__temp4 = (GPIO_ReadInputDataBit(GPIO_DIALSWITCH_PORT, GPIO_NODE_ADDR2)) <<1;	
+	__temp5 = GPIO_ReadInputDataBit(GPIO_DIALSWITCH_PORT, GPIO_NODE_ADDR3);
+  __temp = __temp1|__temp2|__temp3|__temp4|__temp5 ;	
 	return __temp;
 }
 

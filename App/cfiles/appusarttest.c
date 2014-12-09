@@ -23,12 +23,12 @@ static bool_t  AppUsartTestRxMessage(void);
 static bool_t AppUsartTestCheckRxMessage(void);
 //------------------------------------------------------------------------------------//
 //协议命令
-static void ControllSmartSocket(void);
+static void SmartSocketLearn(void);
 //------------------------------------------------------------------------------------//
 //命令函数指针，通过命令编号选择命令
 const functionP_t normalTransactionTest[]=
 {
-	ControllSmartSocket,
+	SmartSocketLearn,
 };
 //------------------------------------------------------------------------------------//
 void AppUsart1Init()
@@ -107,7 +107,7 @@ static bool_t AppUsartTestCheckRxMessage()
 }	
 //------------------------------------------------------------------------------------//
 //协议命令
-static void ControllSmartSocket(void)  //控制智能插座
+static void SmartSocketLearn(void)  //控制智能插座
 {
 	u8 temp[3];
 	_appRsTxBufTest.buffer.info[0] = 0x7e;
@@ -115,11 +115,13 @@ static void ControllSmartSocket(void)  //控制智能插座
 	_appRsTxBufTest.buffer.info[2] =1;
 	_appRsTxBufTest.dataLen = 3;
 	
-	
 	temp[0] = _appRsRxBufTest.buffer.info[3]; //smart socket number1
-	temp[1] = _appRsRxBufTest.buffer.info[4];
-	temp[2] = nodeAddrValue; //
+	temp[1] = _appRsRxBufTest.buffer.info[4];	//smart socket operation
+	temp[2] = _appRsRxBufTest.buffer.info[5]; //node addr	
+	//temp[2] = nodeAddrValue;
 	Rf315SendMsg(temp);
+	//smartSocketStatus
+	
 }
 //------------------------------------------------------------------------------------//
 

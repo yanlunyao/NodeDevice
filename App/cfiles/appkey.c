@@ -52,7 +52,7 @@ void AppKeyDialSwitchInit()
 	OsDialSwitchInit();
 	t_systmr_insertQuickTask(AppSanKeyTask_10ms, 10, OSTMR_PERIODIC);
 	learnKeyStatus = KEY_STATUS_IDLE;
-	nodeAddrValue = 0x0e;//OsGetNodeAddr(); 
+	nodeAddrValue = OsGetNodeAddr(); 
 }
 void AppKeyProcess()
 {

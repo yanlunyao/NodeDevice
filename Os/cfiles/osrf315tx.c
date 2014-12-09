@@ -14,12 +14,14 @@
 ********************************************************************************
 */
 //#include "osdelay.h"
+#include <string.h>
 #include "osrf315tx.h"
 #include "osled.h"
 #include "ostmr.h"
 
 /*define********************************************************************************************/
 #define		RF_SEND_TIMES_NUM					5
+#define   SOCKET_NUM								4
 
 #define		RF_SEND_HIGH							GPIO_WriteBit(GPIO_RF315_TX_PORT, GPIO_RF315_TX, Bit_SET);
 #define		RF_SEND_LOW							GPIO_WriteBit(GPIO_RF315_TX_PORT, GPIO_RF315_TX, Bit_RESET);
@@ -38,12 +40,20 @@ typedef enum
   RF_TXING_DATA   //数据位发送状态         
 }_rfSendStatus_st;   
 
+
+typedef enum
+{
+  SSS_STATUS_NONE =0,
+  SSS_STATUS_OPEN,
+  SSS_STATUS_CLOSE,
+  SSS_STATUS_INVERT
+}_SmartSocketStatus_t;
 /*valiable********************************************************************************************/
 volatile u8 rfTimerCnt = 0;
 volatile u8 rfDataBit[25] = {0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff}; //加多一位防止数组溢出
 volatile u8 rfDataBitNum = 0;
 volatile _rfSendStatus_st rfSendStatus; //中断里会被改变
-
+_SmartSocketStatus_t smartSocketStatus[SOCKET_NUM]; //智能插座的操作状态,只在接收到相应控制命令状态才变化，学习时状态不变化
 	
 /**static function**************************************************************************************/
 static void Rf315StopSendIt(void);
@@ -86,6 +96,9 @@ void OsRf315Init()
 	
 	TimerInit_3nd();
 	TIM_NVIC_Configuration_3nd();
+	
+	memset(smartSocketStatus, 0, SOCKET_NUM); 
+	
 }
 /*********************************************************************************************************
 *	brief: 旧的延时发送rf函数
@@ -320,6 +333,7 @@ static bool_t Rf315Transmit(u8 *addr)
 }
 /*********************************************************************************************************
 *	brief: 调用发送rf函数，发送若干次
+data[1]:1为总开，2为总关，3为反转
 *********************************************************************************************************/
 void Rf315SendMsg(u8 *data)
 {
@@ -330,4 +344,26 @@ void Rf315SendMsg(u8 *data)
 	}
 	learnLedBlinkMode.int8u = LEARN_LED_BLINK;//学习灯闪烁
 }	
+/*********************************************************************************************************
+*	brief: 记录rf开关操作
+*********************************************************************************************************/
+bool_t RecordSmartSocketOperation(u8 socketNum, u8 operation)
+{
+	if((operation>=1)&&(operation<=3)&&(socketNum<SOCKET_NUM))
+	{	
+		smartSocketStatus[socketNum] = (_SmartSocketStatus_t) operation; //记录控制rf开关的操作
+		return TRUE;
+	}
+	return FALSE;
+}	
+/*********************************************************************************************************
+*	brief: 获取开关状态
+*********************************************************************************************************/
+u8 *GetRecordSmartSocketOperationStatus(u8 *status)
+{
+  memcpy(status, smartSocketStatus, SOCKET_NUM);
+	return status;
+}
+
+
 

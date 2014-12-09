@@ -15,9 +15,9 @@
 #include "stm32f10x.h"
 
 //led 
-#define RCC_GPIO_LED                                RCC_APB2Periph_GPIOC //|RCC_APB2Periph_GPIOC
+#define RCC_GPIO_LED                                RCC_APB2Periph_GPIOD //|RCC_APB2Periph_GPIOC
 #define LED_STATUS_PORT															GPIOC                              
-#define LED_LEARN_PORT															GPIOC    //GPIOD
+#define LED_LEARN_PORT															GPIOD    //GPIOD
 #define GPIO_LED_STATUS                             GPIO_Pin_7    
 #define GPIO_LED_LEARN                              GPIO_Pin_7
 //#define GPIO_LED_ALL                                GPIO_LED1 |GPIO_LED2 //|GPIO_LED3 |GPIO_LED4 
@@ -43,7 +43,8 @@
 #define	GPIO_NODE_ADDR1														  GPIO_Pin_13
 #define	GPIO_NODE_ADDR2														  GPIO_Pin_14
 #define	GPIO_NODE_ADDR3															GPIO_Pin_15
-
+#define	GPIO_NODE_ADDR4														  GPIO_Pin_1
+#define	GPIO_NODE_ADDR5															GPIO_Pin_2
 
 //rf315
 #define RCC_RF315_TX                                RCC_APB2Periph_GPIOA

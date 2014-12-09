@@ -19,8 +19,10 @@ define
 //sensor num
 #define		SENSOR_NUM													5
 //sensor upload event parameter
-#define   REUPLOAD_SENSOR_STATUS_CONTER				20  //2s
+#define   REUPLOAD_SENSOR_STATUS_CONTER				20  //2s   temporary
 #define 	REUPLOAD_CNT_MAX										3
+//sensor state change effective time
+#define 	SENSOR_STATE_CHANGE_VALID_TIME			10  //1S
 
 //
 /*
@@ -157,7 +159,7 @@ static void sensor_alarm_check(u8 ch, u8 *status)
 			else
 			{
 				g_sensor_timing_flg = 1;		
-				if(g_sensor_cnt > 10)			
+				if(g_sensor_cnt > SENSOR_STATE_CHANGE_VALID_TIME)			
 				{
 					g_sensor_timing_flg = 0;	
 					g_sensor_cnt = 0;

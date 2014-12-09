@@ -15,14 +15,12 @@ static  rxProtocol_t       				*_pRcvProMsg = NULL;
 static  u8                        _txTempBuffer[ZIGBEE_INFO_LENGTH+10];
 static  CommStatus_t				_commStatus;
 //static  cmdType_t                 cmdType;
-
 //------------------------------------------------------------------------------------//
-extern bool_t UpRespondConfirmed[5]; //from appsensor.c
+//extern variables------------------------------------------------------------------------------------//
 extern u8 nodeAddrValue; //from appkey.c
 //------------------------------------------------------------------------------------//
 static bool_t AppZigbeeCheckRxMessage(void);
 static  bool_t  AppZigbeeRxMessage(void);
-
 //------------------------------------------------------------------------------------//
 //协议命令
 static void GetSensorCurrentStatus(void);
@@ -179,16 +177,25 @@ s8 AppRs485CommSendCmd(u16 dataLen, u8 * data)
 static void ControllSmartSocket(void)  //控制智能插座
 {
 	u8 temp[3];
-	_appRsTxBuf.buffer.info[0] = 0x7e;
-	_appRsTxBuf.buffer.info[1] = 3;
-	_appRsTxBuf.buffer.info[2] =1;
-	_appRsTxBuf.dataLen = 3;
-	
 	
 	temp[0] = _appRsRxBuf.buffer.info[3]; //smart socket number1
-	temp[1] = _appRsRxBuf.buffer.info[4];
-	temp[2] = nodeAddrValue; //
+	temp[1] = _appRsRxBuf.buffer.info[4];	//smart socket operation
+	temp[2] = _appRsRxBuf.buffer.info[5]; //node addr
+	//temp[2] = nodeAddrValue; 
+	if((temp[0]>=4)||(temp[1]==0)||(temp[1]>=4)||(temp[2]>=32))
+	{
+		return;
+	}
+	if(RecordSmartSocketOperation(temp[0],temp[1])!= TRUE)
+	{
+		return ;
+	}	
 	Rf315SendMsg(temp);
+	//返回数据
+	_appRsTxBuf.buffer.info[0] = 0x7e;
+	_appRsTxBuf.buffer.info[1] = 3;
+	_appRsTxBuf.buffer.info[2] =0x7e;
+	_appRsTxBuf.dataLen = 3;
 }	
 static void GetSensorCurrentStatus(void)
 {
