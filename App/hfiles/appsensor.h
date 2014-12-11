@@ -18,8 +18,11 @@
 /*****************
 define 
 *****************/
-#define	 	SENSOR_ALARM_STATE							0xff		
-#define		SENSOR_NORMAL_STATE							0x00
+//sensor num
+#define		SENSOR_NUM													5
+
+#define	 	SENSOR_ALARM_STATE							0x01		
+#define		SENSOR_NORMAL_STATE							0x02
 #define		SENSOR_SHORT_STATE							0x00
 #define		SENSOR_PARALLEL_STATE						0x22
 

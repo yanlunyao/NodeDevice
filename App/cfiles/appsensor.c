@@ -5,6 +5,7 @@
 #include "ostmr.h"
 #include "appsensor.h"
 #include "appusart.h"
+#include "appCommProtocolDef.h"
 
 
 /*****************
@@ -16,8 +17,7 @@ define
 #define		SENSOR_ALARM_OPEN_THRESHOLD_VALUE		4000
 #define		SENSOR_SHORT_THRESHOLD_VALUE				20
 #define		SENSOR_PARALLEL_THRESHOLD_VALUE
-//sensor num
-#define		SENSOR_NUM													5
+
 //sensor upload event parameter
 #define   REUPLOAD_SENSOR_STATUS_CONTER				20  //2s   temporary
 #define 	REUPLOAD_CNT_MAX										3
@@ -295,13 +295,11 @@ static void UploadSensorMsg(u8 channel)
 {
 	u8 tempData[30];
 	u16 tempLen;
-	tempData[0] = 0x7e;
-	tempData[1] = 1;
-	tempData[2] = 2;
-	tempData[3] = channel;
-	tempData[4] = uploadSensorStsEvent[channel].SensorMsg;
-	tempLen = 5;
-	AppRs485CommSendCmd(tempLen, tempData);
+	tempData[0] = channel;
+	tempData[1] = uploadSensorStsEvent[channel].SensorMsg;
+	tempLen = 2;
+
+	AppRs485CommSendCmd(UPLOAD_ALARM_STATE_CHANGE_CMD, UPLOAD_CMD, tempLen, tempData);
 }	
 void AppSensorProcess(void)
 {
@@ -346,7 +344,7 @@ static void AppSensorUploadHandle()
 		if(uploadSensorStsEvent[i].uploadFlag)
 		{	
 			//上传对应sensor的消息  
-			//UploadSensorMsg(i);			
+			UploadSensorMsg(i);			
 			uploadSensorStsEvent[i].uploadCnt +=1;
 			#ifdef DEBUG_PRINTF
 			printf("sensor %d be alarm \r\n",i+1);

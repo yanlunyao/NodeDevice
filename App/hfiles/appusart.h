@@ -15,6 +15,8 @@
 
 #include "osusart.h"
 
+
+#define CMDSTRING		"String"
 /******************************************************************************/
 //#pragma  pack  (1) 
 ////定义的协议结构体
@@ -54,28 +56,18 @@ typedef enum
 #pragma pack(1)
 typedef struct
 {
-//  u1_t comId;
-//  u1_t msgType;
-//  u1_t cmd;
-//  u8 cmdType;
-//  u2_t dataLen;
-//  u2_t sequence;
-//  u1_t readerStatus;
+  u8 cmdNum;
+  u8 cmdType;
+	u8 cmdString[sizeof(CMDSTRING)];
   u8 info[ZIGBEE_INFO_LENGTH];
-//  u1_t LRC;
 } txProtocol_t;
 
 typedef struct
 {
-//  u1_t comId;
-//  u1_t msgType;
-//  u1_t cmd;
-//  u8 cmdType;
-//  u2_t dataLen;
-//  u2_t sequence;
-//  u1_t respondType;
+  u8 cmdNum;
+  u8 cmdType;
+	u8 cmdString[sizeof(CMDSTRING)];
   u8 info[ZIGBEE_INFO_LENGTH]; 
-//  u1_t LRC;
 } rxProtocol_t;
 
 typedef struct
@@ -105,5 +97,5 @@ typedef struct
 
 extern void AppUsartInit(void);
 extern void AppUsartProcess(void);
-extern s8 AppRs485CommSendCmd(u16 dataLen, u8 * data);
+extern s8 AppRs485CommSendCmd(u8 cmdNum, u8 cmdType, u16 dataLen, u8 * data);
 #endif 

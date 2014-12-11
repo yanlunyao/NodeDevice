@@ -20,7 +20,7 @@
 #define  USART2_COM		1
 //串口1为0，串口2为1
 
-#define ZIGBEE_INFO_LENGTH				USART_TX_DATA_SIZE-0
+#define ZIGBEE_INFO_LENGTH				USART_TX_DATA_SIZE-9
 
 
 

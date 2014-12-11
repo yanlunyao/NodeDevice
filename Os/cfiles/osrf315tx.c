@@ -21,7 +21,7 @@
 
 /*define********************************************************************************************/
 #define		RF_SEND_TIMES_NUM					5
-#define   SOCKET_NUM								4
+
 
 #define		RF_SEND_HIGH							GPIO_WriteBit(GPIO_RF315_TX_PORT, GPIO_RF315_TX, Bit_SET);
 #define		RF_SEND_LOW							GPIO_WriteBit(GPIO_RF315_TX_PORT, GPIO_RF315_TX, Bit_RESET);
@@ -349,7 +349,7 @@ void Rf315SendMsg(u8 *data)
 *********************************************************************************************************/
 bool_t RecordSmartSocketOperation(u8 socketNum, u8 operation)
 {
-	if((operation>=1)&&(operation<=3)&&(socketNum<SOCKET_NUM))
+	if((operation>=1)&&(operation<=3)&&(socketNum< SOCKET_NUM))
 	{	
 		smartSocketStatus[socketNum] = (_SmartSocketStatus_t) operation; //记录控制rf开关的操作
 		return TRUE;

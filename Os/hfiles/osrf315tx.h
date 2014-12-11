@@ -14,6 +14,7 @@
 #define __OSRF315TX_H
 
 #include "hw_config.h"
+#define   SOCKET_NUM								4
 
 #define	SMARTSOCKET_TOTAL_OPEN_ADDR										1
 #define	SMARTSOCKET_TOTAL_CLOSE_ADDR									2
