@@ -69,7 +69,12 @@ void AppKeyProcess()
 			
 			//操作完成之后要置按键状态空闲
 			learnKeyStatus = KEY_STATUS_IDLE;
-		}	
+		}
+    else
+		{
+			//排针配置出错，按键状态复位
+			learnKeyStatus = KEY_STATUS_IDLE;
+		}		
 	}
   else if(learnKeyStatus == KEY_STATUS_IDLE)
 	{
