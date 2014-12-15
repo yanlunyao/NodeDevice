@@ -194,6 +194,11 @@ static void ControllSmartSocket(void)  //¿ØÖÆÖÇÄÜ²å×ù
 	//temp[2] = nodeAddrValue; 
 	if((temp[0]>=SOCKET_NUM)||(temp[1]==0)||(temp[1]>3)||(temp[2]>31)) //node addr £º5 pin£¬2^5=32
 	{
+		_appRsTxBuf.buffer.cmdNum = _appRsRxBuf.buffer.cmdNum;
+		_appRsTxBuf.buffer.cmdType = RESPOND_CMD;
+		_appRsTxBuf.buffer.info[0] = CMD_FAIL;
+		memcpy(_appRsTxBuf.buffer.cmdString, CMDSTRING, sizeof(CMDSTRING));
+		_appRsTxBuf.dataLen = 2+1+sizeof(CMDSTRING);
 		return;
 	}
 	if(RecordSmartSocketOperation(temp[0],temp[1])!= TRUE)

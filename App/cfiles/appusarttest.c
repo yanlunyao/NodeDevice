@@ -24,11 +24,13 @@ static bool_t AppUsartTestCheckRxMessage(void);
 //------------------------------------------------------------------------------------//
 //协议命令
 static void SmartSocketLearn(void);
+static void UploadAlarmTest(void);
 //------------------------------------------------------------------------------------//
 //命令函数指针，通过命令编号选择命令
 const functionP_t normalTransactionTest[]=
 {
-	SmartSocketLearn,
+	UploadAlarmTest,
+	SmartSocketLearn
 };
 //------------------------------------------------------------------------------------//
 void AppUsart1Init()
@@ -55,13 +57,14 @@ void AppUsart1Process()
   {
 		if((AppUsartTestRxMessage()) == TRUE)
 		{
-			switch(_appRsRxBufTest.buffer.info[1])  
+			switch(_appRsRxBufTest.buffer.cmdType)  
 			{
 				case SET_LOAD:
-					normalTransactionTest[_appRsRxBufTest.buffer.info[2]]();
+					normalTransactionTest[_appRsRxBufTest.buffer.cmdNum]();
 					__bufferLen = _appRsTxBufTest.dataLen ;
 					memcpy(_txTempBufferTest, &(_appRsTxBufTest.buffer), __bufferLen);
 					t_osscomm_sendMessage(_txTempBufferTest, __bufferLen, USART1_COM); 
+					memset(&(_appRsTxBufTest.buffer), 0, sizeof(_appRsTxBufTest.buffer));
 				break;
 				case RESPOND_CMD:
 				break;	
@@ -80,48 +83,65 @@ static  bool_t  AppUsartTestRxMessage()
 	{
 	  if((AppUsartTestCheckRxMessage())==TRUE)
 		{
-			if(_appRsRxBufTest.buffer.info[0] == 0x7e)
-			{
-				if(_appRsRxBufTest.buffer.info[2] < MAX_RESPOND_CMD_TEST)
-				{}
-				else
-				{
-					return FALSE;
-				}	
-			}	
-			else
-			{
-				return FALSE;
-			}	
+			return TRUE;
 		}	
 	}
 	else
 	{
 		return FALSE;
 	}	
-	return TRUE;
+	return FALSE;
 }
 static bool_t AppUsartTestCheckRxMessage()
 {
-	return TRUE;
+	if(memcmp(_appRsRxBufTest.buffer.cmdString, CMDSTRING, sizeof(CMDSTRING))==0) 
+	{
+		if(_appRsRxBufTest.buffer.cmdNum <MAX_CMD_NUM) 
+		{
+			if(_appRsRxBufTest.buffer.cmdType <3) 
+			{
+				return TRUE;
+			}	
+		}
+	}	
+	return FALSE;
 }	
 //------------------------------------------------------------------------------------//
 //协议命令
 static void SmartSocketLearn(void)  //控制智能插座
 {
 	u8 temp[3];
-	_appRsTxBufTest.buffer.info[0] = 0x7e;
-	_appRsTxBufTest.buffer.info[1] = 3;
-	_appRsTxBufTest.buffer.info[2] =1;
-	_appRsTxBufTest.dataLen = 3;
 	
-	temp[0] = _appRsRxBufTest.buffer.info[3]; //smart socket number1
-	temp[1] = _appRsRxBufTest.buffer.info[4];	//smart socket operation
-	temp[2] = _appRsRxBufTest.buffer.info[5]; //node addr	
-	//temp[2] = nodeAddrValue;
+	temp[0] = _appRsRxBufTest.buffer.info[1]; //smart socket number1
+	temp[1] = _appRsRxBufTest.buffer.info[2];	//smart socket operation
+	temp[2] = _appRsRxBufTest.buffer.info[0]; //node addr
+	//temp[2] = nodeAddrValue; 
+	if((temp[0]>=SOCKET_NUM)||(temp[1]==0)||(temp[1]>3)||(temp[2]>31)) //node addr ：5 pin，2^5=32
+	{
+		_appRsTxBufTest.buffer.cmdNum = _appRsRxBufTest.buffer.cmdNum; 
+		_appRsTxBufTest.buffer.cmdType = RESPOND_CMD; 
+		_appRsTxBufTest.buffer.info[0] = CMD_FAIL; 
+		memcpy(_appRsTxBufTest.buffer.cmdString, CMDSTRING, sizeof(CMDSTRING));
+		_appRsTxBufTest.dataLen = 2+1+sizeof(CMDSTRING);
+		return;
+	}
+	if(RecordSmartSocketOperation(temp[0],temp[1])!= TRUE)
+	{
+		return ;
+	}	
 	Rf315SendMsg(temp);
-	//smartSocketStatus
-	
+	//返回数据
+	_appRsTxBufTest.buffer.cmdNum = _appRsRxBufTest.buffer.cmdNum; 
+	_appRsTxBufTest.buffer.cmdType = RESPOND_CMD; 
+	_appRsTxBufTest.buffer.info[0] = CMD_SUCESS; 
+	memcpy(_appRsTxBufTest.buffer.cmdString, CMDSTRING, sizeof(CMDSTRING)); 
+ 	_appRsTxBufTest.buffer.info[1] = _appRsRxBufTest.buffer.info[0]; 
+	_appRsTxBufTest.buffer.info[2] = _appRsRxBufTest.buffer.info[1]; 
+	_appRsTxBufTest.buffer.info[3] = _appRsRxBufTest.buffer.info[2]; 
+	_appRsTxBufTest.dataLen = 2+4+sizeof(CMDSTRING);
 }
+static void UploadAlarmTest(void)
+{
+}	
 //------------------------------------------------------------------------------------//
 

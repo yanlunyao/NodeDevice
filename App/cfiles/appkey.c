@@ -62,7 +62,7 @@ void AppKeyProcess()
 		learningCode[0] = OsGetSmartSocketAddr();
 		learningCode[1] = OsGetSmartControlSwitchValue();
 		learningCode[2] = nodeAddrValue;
-		//if((learningCode[0]<4)&&(learningCode[1]>0))  //本节点支持最多4个RF插座，控制值00为无效  //没有拨码开关，暂时屏蔽
+		if((learningCode[0]<4)&&(learningCode[1]>0)&&(learningCode[1]<4)&&(learningCode[2]<32))  //本节点支持最多4个RF插座，控制值00为无效  
 		{
 			Rf315SendMsg((u8 *)&learningCode[0]);//发送学习码
 			//learnLedBlinkMode.int8u = LEARN_LED_BLINK;//学习灯闪烁放在Rf315SendMsg函数里

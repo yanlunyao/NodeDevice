@@ -19,7 +19,7 @@ define
 #define		SENSOR_PARALLEL_THRESHOLD_VALUE
 
 //sensor upload event parameter
-#define   REUPLOAD_SENSOR_STATUS_CONTER				20  //2s   temporary
+#define   REUPLOAD_SENSOR_STATUS_CONTER				50  //5s   temporary
 #define 	REUPLOAD_CNT_MAX										3
 //sensor state change effective time
 #define 	SENSOR_STATE_CHANGE_VALID_TIME			10  //1S
@@ -34,8 +34,8 @@ define
 static u8 s_channel = 0;
 
 // the buf of sensor state of old and new
-static u8 s_old_status_buf[5] = {0, 0, 0, 0, 0};
-static u8 s_new_status_buf[5] = {0, 0, 0, 0, 0};
+static u8 s_old_status_buf[5] = {2, 2, 2, 2, 2};
+static u8 s_new_status_buf[5] = {2, 2, 2, 2, 2};
 
 u8  g_sensor_timing_flg = 0;		// sensor timing flag
 u16 g_sensor_cnt = 0;				// sensor count
@@ -337,7 +337,7 @@ static void AppSensorUploadHandle()
 	i = s_channel -1;
 	if(uploadSensorStsEvent[i].needUpRespondConfirm) //respond confirmed 在串口接收里置FASLE
 	{
-		if(uploadSensorStsEvent[i].uploadCnt >= REUPLOAD_CNT_MAX)
+		if(uploadSensorStsEvent[i].uploadCnt > REUPLOAD_CNT_MAX)
 		{
 			memset(&uploadSensorStsEvent[i], 0, sizeof(uploadSensorEvent_t)); //复位
 		}	
