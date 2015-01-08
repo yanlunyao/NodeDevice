@@ -25,6 +25,6 @@
 extern void OsRf315Init(void);
 extern void Rf315SendMsg(u8 *data);
 extern bool_t RecordSmartSocketOperation(u8 socketNum, u8 operation);
-extern u8 *GetRecordSmartSocketOperationStatus(u8 *status);
-
+//extern u8 *GetRecordSmartSocketOperationStatus(u8 *status);
+extern u8 GetSmartSocketStatus(u8 num);
 #endif

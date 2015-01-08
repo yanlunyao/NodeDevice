@@ -357,13 +357,18 @@ bool_t RecordSmartSocketOperation(u8 socketNum, u8 operation)
 	return FALSE;
 }	
 /*********************************************************************************************************
-*	brief: 获取开关状态
+*	brief: 获取所有开关状态 
 *********************************************************************************************************/
 u8 *GetRecordSmartSocketOperationStatus(u8 *status)
 {
   memcpy(status, smartSocketStatus, SOCKET_NUM);
 	return status;
 }
-
-
+/*********************************************************************************************************
+*	brief: 获取开关状态 
+*********************************************************************************************************/
+u8 GetSmartSocketStatus(u8 num)
+{
+	return (smartSocketStatus[num]);
+}
 
