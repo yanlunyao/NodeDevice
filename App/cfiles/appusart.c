@@ -21,17 +21,20 @@ extern u8 nodeAddrValue; //from appkey.c
 //------------------------------------------------------------------------------------//
 static bool_t AppZigbeeCheckRxMessage(void);
 static  bool_t  AppZigbeeRxMessage(void);
+static void normlSetPacket(char cmd, char cmdType, char *info, char info_len);
 //------------------------------------------------------------------------------------//
 //协议命令
-static void GetSensorCurrentStatus(void);
+//static void GetSensorCurrentStatus(void);
 static void SensorStatusChangedUpload(void);
 static void ControllSmartSocket(void);
+static void CheckSmartSocket(void);
 //------------------------------------------------------------------------------------//
 //命令函数指针，通过命令编号选择命令
 const functionP_t normalTransaction[]=
 {
 	SensorStatusChangedUpload,
-	ControllSmartSocket
+	ControllSmartSocket,
+	CheckSmartSocket
 };
 //------------------------------------------------------------------------------------//
 void AppUsartInit()
@@ -85,6 +88,7 @@ void AppUsartProcess()
 				{
 					case SET_LOAD:
 						normalTransaction[_appRsRxBuf.buffer.cmdNum]();
+						
 						__bufferLen = _appRsTxBuf.dataLen ;
 					
 						memcpy(_txTempBuffer, &(_appRsTxBuf.buffer), __bufferLen);
@@ -201,10 +205,8 @@ static void ControllSmartSocket(void)  //控制智能插座
 		_appRsTxBuf.dataLen = 2+1+sizeof(CMDSTRING);
 		return;
 	}
-	if(RecordSmartSocketOperation(temp[0],temp[1])!= TRUE)
-	{
-		return ;
-	}	
+	RecordSmartSocketOperation(temp[0],temp[1]);
+
 	Rf315SendMsg(temp);
 	//返回数据
 	_appRsTxBuf.buffer.cmdNum = _appRsRxBuf.buffer.cmdNum;
@@ -215,14 +217,41 @@ static void ControllSmartSocket(void)  //控制智能插座
 	_appRsTxBuf.buffer.info[2] = _appRsRxBuf.buffer.info[1];
 	_appRsTxBuf.buffer.info[3] = _appRsRxBuf.buffer.info[2];
 	_appRsTxBuf.dataLen = 2+4+sizeof(CMDSTRING);
-}	
+}
+static void CheckSmartSocket(void)
+{
+	u8 switchNum,status;
+	char info[10];
+	char infoLen;
+	char cmdNum,cmdType;
+	
+	switchNum = _appRsRxBuf.buffer.info[1];
+	cmdNum = _appRsRxBuf.buffer.cmdNum;
+	cmdType = RESPOND_CMD;
+	if(switchNum >=4)
+	{
+		info[0] = CMD_FAIL;
+		infoLen = 4;
+		normlSetPacket(cmdNum,cmdType,info,infoLen);
+		return ;
+	}
+	status = GetSmartSocketStatus(switchNum);
+	info[0] = CMD_SUCESS;
+	info[1] = nodeAddrValue;
+	info[2] = switchNum;
+	info[3] = status;
+	infoLen = 4;
+	normlSetPacket(cmdNum,cmdType,info,infoLen);
+}
+#if 0	
 static void GetSensorCurrentStatus(void)
 {
 	_appRsTxBuf.buffer.info[0] = 0x7e;
 	_appRsTxBuf.buffer.info[1] =3;
 	_appRsTxBuf.buffer.info[2] =2;
 	_appRsTxBuf.dataLen = 3;
-}	
+}
+#endif
 static void SensorStatusChangedUpload(void)
 {
 	if((_appRsRxBuf.buffer.info[0] ==CMD_SUCESS)&&(_appRsRxBuf.buffer.info[1] <SENSOR_NUM))  //参数错误不做处理，软件会继续重发此命令
@@ -231,4 +260,13 @@ static void SensorStatusChangedUpload(void)
 	}
 }	
 //------------------------------------------------------------------------------------//
-
+//传输串口命令的组包
+static void normlSetPacket(char cmd, char cmdType, char *info, char info_len)
+{
+	_appRsTxBuf.buffer.cmdNum = cmd;
+	_appRsTxBuf.buffer.cmdType = cmdType;
+	memcpy(_appRsTxBuf.buffer.info, info, info_len);
+	memcpy(_appRsTxBuf.buffer.cmdString, CMDSTRING, sizeof(CMDSTRING));
+	_appRsTxBuf.dataLen = 2+info_len+sizeof(CMDSTRING);
+}	
+//------------------------------------------------------------------------------------//

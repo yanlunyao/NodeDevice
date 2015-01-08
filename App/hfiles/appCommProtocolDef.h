@@ -30,7 +30,8 @@ protocol info
 //cmd
 #define	UPLOAD_ALARM_STATE_CHANGE_CMD	  0x00
 #define	CONTROLL_SMART_SOCKET_CMD	  		0x01
-#define MAX_CMD_NUM						          2    
+#define CHECK_SMART_SOCKET_CMD					0x02
+#define MAX_CMD_NUM						          3    
 
 
 
