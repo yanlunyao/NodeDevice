@@ -18,6 +18,7 @@
 #include "osrf315tx.h"
 #include "osled.h"
 #include "ostmr.h"
+//#include "osusart.h"  //debug yan150112
 
 /*define********************************************************************************************/
 #define		RF_SEND_TIMES_NUM					5
@@ -54,6 +55,7 @@ volatile u8 rfDataBit[25] = {0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0
 volatile u8 rfDataBitNum = 0;
 volatile _rfSendStatus_st rfSendStatus; //中断里会被改变
 _SmartSocketStatus_t smartSocketStatus[SOCKET_NUM]; //智能插座的操作状态,只在接收到相应控制命令状态才变化，学习时状态不变化
+//u8	rfTransTimerOut;
 	
 /**static function**************************************************************************************/
 static void Rf315StopSendIt(void);
@@ -61,7 +63,6 @@ static void Rf315StartSendIt(void);
 static void TimerInit_3nd(void);
 static void TIM_NVIC_Configuration_3nd(void);
 static bool_t Rf315Transmit(u8 *addr);
-
 //static void Rf315StopSend(void);
 //static void Rf315StartSend(void);
 //	
@@ -84,7 +85,6 @@ static bool_t Rf315Transmit(u8 *addr);
 //	
 //	GPIO_WriteBit(GPIO_RF315_TX_PORT, GPIO_RF315_TX, Bit_SET);
 //}
-
 void OsRf315Init()
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
@@ -338,11 +338,17 @@ data[1]:1为总开，2为总关，3为反转
 void Rf315SendMsg(u8 *data)
 {
 	u8 i;
+//	u8 test[] = "rf be controled";
 	for(i=0;i< RF_SEND_TIMES_NUM;i++)
 	{
-		while(Rf315Transmit(data)!= TRUE);
+		while(Rf315Transmit(data)!= TRUE)
+		{
+			//如果超过1s还未发送完成，就超时退出
+		}	
 	}
+	Rf315StopSendIt();
 	learnLedBlinkMode.int8u = LEARN_LED_BLINK;//学习灯闪烁
+	//t_osscomm_sendMessage(test, sizeof(test), USART1_COM); //debug yan150112
 }	
 /*********************************************************************************************************
 *	brief: 记录rf开关操作
