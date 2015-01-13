@@ -194,8 +194,8 @@ static void ControllSmartSocket(void)  //¿ØÖÆÖÇÄÜ²å×ù
 	
 	temp[0] = _appRsRxBuf.buffer.info[1]; //smart socket number1
 	temp[1] = _appRsRxBuf.buffer.info[2];	//smart socket operation
-	temp[2] = _appRsRxBuf.buffer.info[0]; //node addr
-	//temp[2] = nodeAddrValue; 
+	//temp[2] = _appRsRxBuf.buffer.info[0]; //node addr
+	temp[2] = nodeAddrValue; 
 	if((temp[0]>=SOCKET_NUM)||(temp[1]==0)||(temp[1]>3)||(temp[2]>31)) //node addr £º5 pin£¬2^5=32
 	{
 		_appRsTxBuf.buffer.cmdNum = _appRsRxBuf.buffer.cmdNum;
