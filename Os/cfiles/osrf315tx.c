@@ -248,6 +248,7 @@ void _TIM4_IRQHandler(void)
 */	
 static void Rf315StopSendIt()
 {
+	u8 i;
 	GPIO_InitTypeDef GPIO_InitStructure;
 	
 	GPIO_InitStructure.GPIO_Mode = GPIO_RF315_TX_STOP_MODE;
@@ -258,6 +259,10 @@ static void Rf315StopSendIt()
 	rfDataBitNum = 0;
 	rfTimerCnt = 0;
 	rfSendStatus = RF_IDLE;
+	for(i=0;i<sizeof(rfDataBit);i++)
+	{
+		rfDataBit[i] = 0xff;
+	}
 }
 /*
 *********************************************************************************************************
@@ -335,9 +340,11 @@ static bool_t Rf315Transmit(u8 *addr)
 *	brief: 调用发送rf函数，发送若干次
 data[1]:1为总开，2为总关，3为反转
 *********************************************************************************************************/
-void Rf315SendMsg(u8 *data)
+void Rf315SendMsg(u8 *data)  
 {
 	u8 i;
+	data[0]=data[0]+10; //add yan150113
+	data[1]=data[1]+5;
 //	u8 test[] = "rf be controled";
 	for(i=0;i< RF_SEND_TIMES_NUM;i++)
 	{
