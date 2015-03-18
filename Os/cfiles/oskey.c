@@ -47,9 +47,9 @@ u8 OsGetSmartSocketAddr()  //123
 {
 	u8 __temp,__temp1,__temp2,__temp3;
 	__temp=__temp1=__temp2=__temp3=0;
-	__temp1 = (GPIO_ReadInputDataBit(GPIO_DIALSWITCH_PORT, GPIO_SMART_SOCKET_ADDR3))<<2;
-	__temp2 = (GPIO_ReadInputDataBit(GPIO_DIALSWITCH_PORT, GPIO_SMART_SOCKET_ADDR2)) <<1;	
-	__temp3 = GPIO_ReadInputDataBit(GPIO_DIALSWITCH_PORT, GPIO_SMART_SOCKET_ADDR1);
+	__temp1 = (1^(GPIO_ReadInputDataBit(GPIO_DIALSWITCH_PORT, GPIO_SMART_SOCKET_ADDR3)))<<2;
+	__temp2 = (1^(GPIO_ReadInputDataBit(GPIO_DIALSWITCH_PORT, GPIO_SMART_SOCKET_ADDR2))) <<1;	
+	__temp3 = 1^GPIO_ReadInputDataBit(GPIO_DIALSWITCH_PORT, GPIO_SMART_SOCKET_ADDR1);
   __temp = __temp1|__temp2|__temp3 ;
   return __temp;	
 }
@@ -57,8 +57,8 @@ u8 OsGetSmartControlSwitchValue() //45
 {
 	u8 __temp,__temp1,__temp2;
 	__temp=__temp1=__temp2=0;
-	__temp1 = (GPIO_ReadInputDataBit(GPIO_DIALSWITCH_PORT, GPIO_SMART_SOCKET_CONTROL2)) <<1;	
-	__temp2 = GPIO_ReadInputDataBit(GPIO_DIALSWITCH_PORT, GPIO_SMART_SOCKET_CONTROL1);
+	__temp1 = (1^(GPIO_ReadInputDataBit(GPIO_DIALSWITCH_PORT, GPIO_SMART_SOCKET_CONTROL2))) <<1;	
+	__temp2 = 1^GPIO_ReadInputDataBit(GPIO_DIALSWITCH_PORT, GPIO_SMART_SOCKET_CONTROL1);
   __temp = __temp1|__temp2 ;
   return __temp;	
 }
@@ -66,11 +66,11 @@ u8 OsGetNodeAddr()   //678
 {
 	u8 __temp,__temp1,__temp2,__temp3,__temp4,__temp5;
 	__temp=__temp1=__temp2=__temp3=__temp4=__temp5=0;
-	__temp1 = (GPIO_ReadInputDataBit(GPIOA, GPIO_NODE_ADDR5))<<4;
-	__temp2 = (GPIO_ReadInputDataBit(GPIOA, GPIO_NODE_ADDR4))<<3;
-	__temp3 = (GPIO_ReadInputDataBit(GPIO_DIALSWITCH_PORT, GPIO_NODE_ADDR3))<<2;
-	__temp4 = (GPIO_ReadInputDataBit(GPIO_DIALSWITCH_PORT, GPIO_NODE_ADDR2)) <<1;	
-	__temp5 = GPIO_ReadInputDataBit(GPIO_DIALSWITCH_PORT, GPIO_NODE_ADDR1);  //modify bug 150318
+	__temp1 = (1^(GPIO_ReadInputDataBit(GPIOA, GPIO_NODE_ADDR5)))<<4;
+	__temp2 = (1^(GPIO_ReadInputDataBit(GPIOA, GPIO_NODE_ADDR4)))<<3;
+	__temp3 = (1^(GPIO_ReadInputDataBit(GPIO_DIALSWITCH_PORT, GPIO_NODE_ADDR3)))<<2;
+	__temp4 = (1^(GPIO_ReadInputDataBit(GPIO_DIALSWITCH_PORT, GPIO_NODE_ADDR2))) <<1;	
+	__temp5 = 1^GPIO_ReadInputDataBit(GPIO_DIALSWITCH_PORT, GPIO_NODE_ADDR1);  //modify bug 150318
   __temp = __temp1|__temp2|__temp3|__temp4|__temp5 ;	
 	return __temp;
 }
