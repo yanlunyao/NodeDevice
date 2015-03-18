@@ -61,7 +61,7 @@ void AppKeyProcess()
 		u8 learningCode[3];
 		learningCode[0] = OsGetSmartSocketAddr();
 		learningCode[1] = OsGetSmartControlSwitchValue();
-		learningCode[2] = nodeAddrValue;
+		learningCode[2] = OsGetNodeAddr();//nodeAddrValue; //m yanly150318
 		if((learningCode[0]<4)&&(learningCode[1]>0)&&(learningCode[1]<4)&&(learningCode[2]<32))  //本节点支持最多4个RF插座，控制值00为无效  
 		{
 			Rf315SendMsg((u8 *)&learningCode[0]);//发送学习码
